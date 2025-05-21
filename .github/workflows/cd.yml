@@ -41,7 +41,7 @@ jobs:
       - name: Install dependencies
         run: |
           npm cache clean --force
-          npm install --no-optional --no-fund --no-package-lock
+          npm install --no-fund --no-package-lock
       
       # Patch Rollup native module loader
       - name: Patch Rollup native modules
@@ -100,7 +100,7 @@ jobs:
       - name: Install dependencies
         run: |
           npm cache clean --force
-          npm install --no-optional --no-fund --no-package-lock
+          npm install --no-fund --no-package-lock
       
       # Patch Rollup native module loader
       - name: Patch Rollup native modules
@@ -159,7 +159,7 @@ jobs:
       - name: Install dependencies
         run: |
           npm cache clean --force
-          npm install --no-optional --no-fund --no-package-lock
+          npm install --no-fund --no-package-lock
       
       # Patch Rollup native module loader
       - name: Patch Rollup native modules
