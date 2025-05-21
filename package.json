@@ -15,7 +15,7 @@
     "test:unit": "vitest --run",
     "build": "cross-env ROLLUP_SKIP_NODEJS_NATIVE=1 tsc -b && vite build",
     "build:safe": "cross-env ROLLUP_SKIP_NODEJS_NATIVE=1 vite build --emptyOutDir",
-    "build:ci": "node scripts/build-ci.js",
+    "build:ci": "ROLLUP_SKIP_NODEJS_NATIVE=1 vite build --emptyOutDir",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "preview": "vite preview"
