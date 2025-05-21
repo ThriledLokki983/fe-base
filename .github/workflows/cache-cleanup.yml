@@ -1,0 +1,41 @@
+name: Cache Cleanup
+
+on:
+  schedule:
+    - cron: '0 0 * * 0'  # Run weekly on Sundays at midnight
+  workflow_dispatch:  # Allow manual triggering
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cleanup
+        run: |
+          echo "Cleaning up old caches..."
+          gh extension install actions/gh-actions-cache
+          
+          REPO=${{ github.repository }}
+          BRANCH="refs/heads/main"
+          
+          echo "Fetching list of cache keys..."
+          cacheKeysForPR=$(gh actions-cache list -R $REPO -B $BRANCH | cut -f 1 )
+          
+          ## Setting this to not fail the workflow while deleting cache keys.
+          set +e
+          echo "Deleting caches..."
+          for cacheKey in $cacheKeysForPR
+          do
+              # Delete caches older than 30 days
+              createdAt=$(gh actions-cache list -R $REPO -B $BRANCH | grep $cacheKey | awk '{print $3 " " $4}')
+              createdAtSeconds=$(date -d "$createdAt" +%s)
+              nowSeconds=$(date +%s)
+              ageInDays=$(( ($nowSeconds - $createdAtSeconds) / 86400 ))
+              
+              if [ $ageInDays -gt 30 ]; then
+                  gh actions-cache delete $cacheKey -R $REPO -B $BRANCH --confirm
+                  echo "Deleted cache key: $cacheKey"
+              fi
+          done
+          echo "Done cleaning up caches."
+        env:
+          GH_TOKEN: ${{ secrets.DEPENDABOT_TOKEN }}

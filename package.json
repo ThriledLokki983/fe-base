@@ -6,12 +6,16 @@
   "description": "A base template for React applications using Vite and TypeScript + SWC. ",
   "author": "Gideon Nimoh",
   "scripts": {
-    "start": "vite --port=3000 --host",
+    "start": "vite --port=${VITE_PORT:-3000} --host",
+    "start:dev": "vite --mode development --port=${VITE_PORT:-3000} --host",
+    "start:staging": "vite --mode staging --port=${VITE_PORT:-3001} --host",
+    "start:prod": "vite --mode production --port=${VITE_PORT:-80} --host",
     "watch": "tsc -b --watch",
     "test": "vite test",
     "test:unit": "vitest --run",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -20,6 +24,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
+    "@types/node": "^22.15.21",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
     "@vitejs/plugin-react-swc": "^3.9.0",

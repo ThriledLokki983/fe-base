@@ -23,6 +23,8 @@ export default tseslint.config(
         'warn',
         { allowConstantExport: true },
       ],
+      // Enforce semicolons for all statements
+      'semi': ['error', 'always'],
     },
   },
 )
