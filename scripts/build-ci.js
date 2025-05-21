@@ -7,6 +7,10 @@
 
 // Set the environment variable
 process.env.ROLLUP_SKIP_NODEJS_NATIVE = '1';
+// Force disable native extensions for all related packages
+process.env.DISABLE_NATIVE = 'true';
+// Suppress node native module warnings
+process.env.NODE_PENDING_DEPRECATION = '0';
 
 console.log('🛠️  Starting build with ROLLUP_SKIP_NODEJS_NATIVE=1');
 
@@ -26,8 +30,8 @@ exec('npx tsc -b --noEmit', (tscError, tscStdout, tscStderr) => {
   
   console.log('🚀 Running Vite build...');
   
-  // Then run Vite build
-  exec('npx vite build', (viteError, viteStdout, viteStderr) => {
+  // Then run Vite build with explicit configuration to skip native modules
+  exec('npx vite build --config vite.config.ci.ts', (viteError, viteStdout, viteStderr) => {
     if (viteError) {
       console.error('❌ Vite build failed:', viteError);
       console.error(viteStderr);
