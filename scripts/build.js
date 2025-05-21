@@ -5,8 +5,8 @@
  * It sets the ROLLUP_SKIP_NODEJS_NATIVE environment variable before running the build.
  */
 
-const { spawn } = require('child_process');
-const path = require('path');
+import { spawn } from 'child_process';
+import path from 'path';
 
 // Set the environment variable
 process.env.ROLLUP_SKIP_NODEJS_NATIVE = '1';

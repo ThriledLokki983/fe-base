@@ -65,7 +65,6 @@ jobs:
             ${{ secrets.DOCKER_USERNAME }}/fe-base:dev-${{ github.sha }}
       
       # Add deployment steps for your development environment
-      # This is a placeholder where you would add your actual deployment logic
       - name: Deploy to development
         run: echo "Deployed to development environment"
 
@@ -115,7 +114,6 @@ jobs:
             ${{ secrets.DOCKER_USERNAME }}/fe-base:staging-${{ github.sha }}
       
       # Add deployment steps for your staging environment
-      # This is a placeholder where you would add your actual deployment logic
       - name: Deploy to staging
         run: echo "Deployed to staging environment"
 
@@ -165,6 +163,5 @@ jobs:
             ${{ secrets.DOCKER_USERNAME }}/fe-base:prod-${{ github.sha }}
       
       # Add deployment steps for your production environment
-      # This is a placeholder where you would add your actual deployment logic
       - name: Deploy to production
         run: echo "Deployed to production environment"
