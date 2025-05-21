@@ -26,8 +26,12 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
       
+      - name: Clear npm cache and directories
+        run: |
+          rm -rf node_modules package-lock.json
+          
       - name: Install dependencies
-        run: npm install
+        run: npm install --no-optional
         
       - name: Install testing dependencies
         run: npm install vitest @vitest/ui @vitest/coverage-v8 jsdom --no-save

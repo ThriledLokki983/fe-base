@@ -23,6 +23,10 @@ docker-compose up -d frontend
 
 This project includes several GitHub Actions workflows for continuous integration and deployment. See [GITHUB_ACTIONS.md](./GITHUB_ACTIONS.md) for detailed information.
 
+## Troubleshooting
+
+For common issues and solutions, please refer to the [TROUBLESHOOTING.md](./TROUBLESHOOTING.md) document.
+
 ## Makefile Support
 
 A Makefile is provided for convenient shortcuts to common commands:

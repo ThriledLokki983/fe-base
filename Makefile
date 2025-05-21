@@ -25,6 +25,7 @@ help:
 	@echo ""
 	@echo "Development commands:"
 	@echo "  make install         	- Install dependencies locally"
+	@echo "  make install-clean   	- Clean install (removes node_modules and package-lock.json first)"
 	@echo "  make build           	- Build the application locally"
 	@echo "  make lint            	- Run linter"
 	@echo "  make test            	- Run tests"
@@ -105,10 +106,15 @@ shell-prod:
 	docker compose exec frontend /bin/sh
 
 # Local development commands
-.PHONY: install build lint test dev generate-lockfile open-app
+.PHONY: install install-clean build lint test dev generate-lockfile open-app
 
 install:
-	npm ci
+	npm install
+
+install-clean:
+	@echo "Cleaning node_modules and package-lock.json before install..."
+	rm -rf node_modules package-lock.json
+	npm install --no-optional
 
 build:
 	npm run build
@@ -123,9 +129,11 @@ dev:
 	npm run start
 	
 generate-lockfile:
-	@echo "Generating package-lock.json file..."
-	npm install --package-lock-only
-	@echo "package-lock.json file has been generated."
+	@echo "Updating package-lock.json file with all dependencies..."
+	npm install
+	@echo "Installing development dependencies for testing..."
+	npm install vitest @vitest/ui @vitest/coverage-v8 jsdom
+	@echo "package-lock.json file has been generated with all dependencies."
 
 open-app:
 	@echo "Opening app in browser..."

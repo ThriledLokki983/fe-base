@@ -34,8 +34,12 @@ jobs:
           node-version: '20.x'
           cache: 'npm'
       
+      - name: Clear npm cache and directories
+        run: |
+          rm -rf node_modules package-lock.json
+          
       - name: Install dependencies
-        run: npm install
+        run: npm install --no-optional
       
       - name: Build for development
         run: |
@@ -80,8 +84,12 @@ jobs:
           node-version: '20.x'
           cache: 'npm'
       
+      - name: Clear npm cache and directories
+        run: |
+          rm -rf node_modules package-lock.json
+          
       - name: Install dependencies
-        run: npm install
+        run: npm install --no-optional
       
       - name: Build for staging
         run: |
@@ -126,8 +134,12 @@ jobs:
           node-version: '20.x'
           cache: 'npm'
       
+      - name: Clear npm cache and directories
+        run: |
+          rm -rf node_modules package-lock.json
+          
       - name: Install dependencies
-        run: npm install
+        run: npm install --no-optional
       
       - name: Build for production
         run: |
