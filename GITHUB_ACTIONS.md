@@ -10,10 +10,12 @@ The CI workflow runs on every push to the `main` branch and on pull requests. It
 
 - Runs on multiple Node.js versions (18.x and 20.x)
 - Installs dependencies
-- Runs linters
-- Runs tests
+- Runs linters (with continue-on-error enabled for initial setup)
+- Runs tests (with continue-on-error enabled for initial setup)
 - Builds the project
 - Uploads build artifacts
+
+The workflow is configured with `fail-fast: false` to ensure that if one matrix job fails (e.g., the Node.js 18.x build), the other jobs will still run to completion (e.g., the Node.js 20.x build).
 
 ### CD (Continuous Deployment)
 

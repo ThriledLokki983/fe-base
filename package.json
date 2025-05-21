@@ -34,7 +34,11 @@
     "globals": "^16.0.0",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.30.1",
-    "vite": "^6.3.5"
+    "vite": "^6.3.5",
+    "vitest": "^1.3.0",
+    "@vitest/ui": "^1.3.0",
+    "@vitest/coverage-v8": "^1.3.0",
+    "jsdom": "^24.0.0"
   },
   "main": "eslint.config.js",
   "repository": {
