@@ -43,6 +43,10 @@ jobs:
           npm cache clean --force
           npm install --no-optional --no-fund --no-package-lock
       
+      # Patch Rollup native module loader
+      - name: Patch Rollup native modules
+        run: node scripts/patch-rollup-native.js
+      
       - name: Build for development
         env:
           ROLLUP_SKIP_NODEJS_NATIVE: 1
@@ -98,6 +102,10 @@ jobs:
           npm cache clean --force
           npm install --no-optional --no-fund --no-package-lock
       
+      # Patch Rollup native module loader
+      - name: Patch Rollup native modules
+        run: node scripts/patch-rollup-native.js
+      
       - name: Build for staging
         env:
           ROLLUP_SKIP_NODEJS_NATIVE: 1
@@ -152,6 +160,10 @@ jobs:
         run: |
           npm cache clean --force
           npm install --no-optional --no-fund --no-package-lock
+      
+      # Patch Rollup native module loader
+      - name: Patch Rollup native modules
+        run: node scripts/patch-rollup-native.js
       
       - name: Build for production
         env:
