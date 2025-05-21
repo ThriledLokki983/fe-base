@@ -20,7 +20,11 @@ The workflow is configured with `fail-fast: false` to ensure that if one matrix 
 
 > **Note:** We use `npm install` instead of `npm ci` in the CI workflow to handle discrepancies between package.json and package-lock.json. For more reliable CI, you should run `make generate-lockfile` locally to update your package-lock.json before pushing changes.
 
-> **Rollup Fix:** The workflow includes steps to delete `node_modules` and `package-lock.json` before installation to work around a known npm bug with optional dependencies in Rollup. This resolves the `Cannot find module @rollup/rollup-linux-x64-gnu` error that can occur in GitHub Actions on Linux runners.
+> **Rollup Fix:** The workflow includes multiple fixes for the common Rollup dependency issue:
+> 1. Steps to delete `node_modules` and `package-lock.json` before installation
+> 2. Using the `build:safe` npm script which sets `ROLLUP_SKIP_NODEJS_NATIVE=1`
+> 
+> This resolves the `Cannot find module @rollup/rollup-linux-x64-gnu` error that can occur in GitHub Actions on Linux runners.
 
 ### CD (Continuous Deployment)
 

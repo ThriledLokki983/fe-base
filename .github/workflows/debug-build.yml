@@ -1,0 +1,115 @@
+name: Debug Build
+
+on:
+  workflow_dispatch:
+    inputs:
+      node_version:
+        description: "Node.js version"
+        required: true
+        default: "20.x"
+        type: choice
+        options:
+          - "18.x"
+          - "20.x"
+          - "21.x"
+      npm_command:
+        description: "npm command to run"
+        required: true
+        default: "build:ci"
+        type: choice
+        options:
+          - "build"
+          - "build:safe"
+          - "build:ci"
+          - "custom"
+      custom_command:
+        description: "Custom command (only if npm_command is 'custom')"
+        required: false
+        type: string
+
+jobs:
+  debug:
+    name: Debug Build
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Environment Information
+        run: |
+          echo "GitHub Action Runner Information:"
+          echo "OS: $(uname -a)"
+          echo "CPU: $(cat /proc/cpuinfo | grep "model name" | head -1)"
+          echo "Memory: $(free -h | grep Mem | awk '{print $2}')"
+          echo "Disk: $(df -h . | grep / | awk '{print $2}')"
+          echo ""
+          
+          echo "Node.js Information:"
+          if command -v node &> /dev/null; then
+            node --version
+          else
+            echo "Node.js not installed yet"
+          fi
+          
+          echo ""
+          echo "npm Information:"
+          if command -v npm &> /dev/null; then
+            npm --version
+          else
+            echo "npm not installed yet"
+          fi
+
+      - name: Set up Node.js ${{ inputs.node_version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ inputs.node_version }}
+      
+      - name: Cache cleanup
+        run: |
+          rm -rf node_modules package-lock.json
+      
+      - name: Install dependencies
+        run: npm install --no-optional
+      
+      - name: List installed packages
+        run: npm list --depth=0
+      
+      - name: Debug Rollup Installation
+        run: |
+          echo "Checking Rollup installation..."
+          echo "Rollup main file:"
+          ls -la node_modules/rollup/dist || echo "Rollup dist directory not found"
+          echo "Native modules detection:"
+          node -e "try { require('./node_modules/rollup/dist/native.js'); console.log('Native module loaded successfully'); } catch(e) { console.error('Failed to load native module:', e.message); }"
+          echo "Directory structure:"
+          find node_modules/@rollup -type d | sort || echo "No @rollup directory found"
+      
+      - name: Run build command
+        if: inputs.npm_command != 'custom'
+        run: npm run ${{ inputs.npm_command }}
+        env:
+          ROLLUP_SKIP_NODEJS_NATIVE: 1
+      
+      - name: Run custom command
+        if: inputs.npm_command == 'custom'
+        run: ${{ inputs.custom_command }}
+      
+      - name: Upload dist directory
+        if: success() || failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist-${{ github.run_id }}
+          path: dist/
+          if-no-files-found: ignore
+      
+      - name: Upload error logs
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: error-logs-${{ github.run_id }}
+          path: |
+            npm-debug.log
+            yarn-error.log
+            lerna-debug.log
+          if-no-files-found: ignore

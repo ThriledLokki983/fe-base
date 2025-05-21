@@ -15,7 +15,9 @@ make install-clean
 
 ### Rollup Error: Cannot find module @rollup/rollup-linux-x64-gnu
 
-This error is related to an npm bug with optional dependencies. To fix:
+This error is related to an npm bug with optional dependencies. There are two ways to solve this:
+
+#### Method 1: Clean Installation
 
 1. Remove node_modules and package-lock.json:
    ```bash
@@ -31,6 +33,21 @@ Or use the shorthand:
 ```bash
 make install-clean
 ```
+
+#### Method 2: Use Safe Build
+
+We've added a special build command that works around this Rollup issue:
+
+```bash
+make build-safe
+```
+
+Or directly with npm:
+```bash
+npm run build:safe
+```
+
+This uses the `ROLLUP_SKIP_NODEJS_NATIVE=1` environment variable to bypass the problematic Rollup native dependencies.
 
 ## Docker Issues
 

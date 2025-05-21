@@ -44,7 +44,7 @@ jobs:
       - name: Build for development
         run: |
           cp .env.development .env
-          npm run build
+          npm run build:ci
       
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -94,7 +94,7 @@ jobs:
       - name: Build for staging
         run: |
           cp .env.staging .env
-          npm run build
+          npm run build:ci
       
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -144,7 +144,7 @@ jobs:
       - name: Build for production
         run: |
           cp .env.production .env
-          npm run build
+          npm run build:ci
       
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3

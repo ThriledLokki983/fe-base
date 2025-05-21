@@ -27,6 +27,8 @@ help:
 	@echo "  make install         	- Install dependencies locally"
 	@echo "  make install-clean   	- Clean install (removes node_modules and package-lock.json first)"
 	@echo "  make build           	- Build the application locally"
+	@echo "  make build-safe      	- Build with workarounds for Rollup issues"
+	@echo "  make build-ci        	- Build using the same script as CI workflow"
 	@echo "  make lint            	- Run linter"
 	@echo "  make test            	- Run tests"
 	@echo "  make dev             	- Run development server locally"
@@ -106,7 +108,7 @@ shell-prod:
 	docker compose exec frontend /bin/sh
 
 # Local development commands
-.PHONY: install install-clean build lint test dev generate-lockfile open-app
+.PHONY: install install-clean build build-safe build-ci lint test dev generate-lockfile open-app
 
 install:
 	npm install
@@ -118,6 +120,12 @@ install-clean:
 
 build:
 	npm run build
+	
+build-safe:
+	npm run build:safe
+	
+build-ci:
+	npm run build:ci
 
 lint:
 	npm run lint

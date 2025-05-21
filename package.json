@@ -13,7 +13,9 @@
     "watch": "tsc -b --watch",
     "test": "vite test",
     "test:unit": "vitest --run",
-    "build": "tsc -b && vite build",
+    "build": "cross-env ROLLUP_SKIP_NODEJS_NATIVE=1 tsc -b && vite build",
+    "build:safe": "cross-env ROLLUP_SKIP_NODEJS_NATIVE=1 vite build --emptyOutDir",
+    "build:ci": "node scripts/build.js",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "preview": "vite preview"
@@ -38,6 +40,7 @@
     "vitest": "^1.3.0",
     "@vitest/ui": "^1.3.0",
     "@vitest/coverage-v8": "^1.3.0",
+    "cross-env": "^7.0.3",
     "jsdom": "^24.0.0"
   },
   "main": "eslint.config.js",
