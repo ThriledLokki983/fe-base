@@ -1,4 +1,5 @@
 import env, { isDev, isProd, isStaging } from '../../config/env';
+import styles from './EnvironmentInfo.module.scss';
 
 interface EnvironmentInfoProps {
   className?: string;
@@ -9,22 +10,27 @@ interface EnvironmentInfoProps {
  */
 export const EnvironmentInfo: React.FC<EnvironmentInfoProps> = ({ className = '' }) => {
   return (
-    <div className={`environment-info ${className}`}>
-      <h3>Environment Information</h3>
-      <ul>
-        <li>
-          <strong>Environment:</strong> {env.NODE_ENV}
-          {isDev && <span className="badge dev">DEV</span>}
-          {isStaging && <span className="badge staging">STAGING</span>}
-          {isProd && <span className="badge prod">PROD</span>}
-        </li>
-        <li>
-          <strong>API URL:</strong> {env.API_URL}
-        </li>
-        <li>
-          <strong>Port:</strong> {env.PORT}
-        </li>
-      </ul>
+    <div className={`${styles.envInfo} ${className}`}>
+      <h3 className={styles.title}>Environment Information</h3>
+      <div className={styles.infoGrid}>
+        <div className={styles.infoItem}>
+          <p className={styles.label}>Environment</p>
+          <p className={styles.value}>
+            {env.NODE_ENV}
+            {isDev && <span className="tag tag--primary">DEV</span>}
+            {isStaging && <span className="tag tag--warning">STAGING</span>}
+            {isProd && <span className="tag tag--success">PROD</span>}
+          </p>
+        </div>
+        <div className={styles.infoItem}>
+          <p className={styles.label}>API URL</p>
+          <p className={styles.value}>{env.API_URL}</p>
+        </div>
+        <div className={styles.infoItem}>
+          <p className={styles.label}>Port</p>
+          <p className={styles.value}>{env.PORT}</p>
+        </div>
+      </div>
     </div>
   );
 };

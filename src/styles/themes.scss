@@ -1,0 +1,108 @@
+// Design tokens - these are our base colors
+$colors: (
+  // Brand Colors - Refined neutrals with a hint of warmth
+  brand: (
+    primary: #2C3542,    // Sophisticated dark blue-grey
+    secondary: #626D7D,  // Muted blue-grey
+    accent: #8E8C99     // Warm grey with subtle purple undertone
+  ),
+  
+  // Neutral Colors
+  neutral: (
+    50: #F8F9FA,   // Softer white
+    100: #F1F2F4,  // Subtle grey
+    200: #E9EBED,  // Light grey with blue undertone
+    300: #DFE2E6,  // Medium light grey
+    400: #C5CBD3,  // Medium grey
+    500: #98A1AD,  // Balanced grey
+    600: #6B7684,  // Medium dark grey
+    700: #4A515C,  // Dark grey
+    800: #343A43,  // Deeper grey
+    900: #21252B   // Soft black
+  ),
+
+  // Semantic Colors
+  semantic: (
+    success: #175D2D,
+    warning: #EB8C00,
+    error: #C52A1A,
+    info: #0066CC
+  )
+);
+
+// Theme Variables
+:root {
+  // Light Theme (default)
+  --color-bg-primary: #{map-get(map-get($colors, neutral), 50)};
+  --color-bg-secondary: #{map-get(map-get($colors, neutral), 100)};
+  --color-bg-tertiary: white;
+  
+  --color-text-primary: #{map-get(map-get($colors, neutral), 900)};
+  --color-text-secondary: #{map-get(map-get($colors, neutral), 600)};
+  --color-text-tertiary: #{map-get(map-get($colors, neutral), 400)};
+  
+  --color-border-primary: #{map-get(map-get($colors, neutral), 200)};
+  --color-border-secondary: #{map-get(map-get($colors, neutral), 100)};
+  
+  --color-brand-primary: #{map-get(map-get($colors, brand), primary)};
+  --color-brand-secondary: #{map-get(map-get($colors, brand), secondary)};
+  --color-brand-accent: #{map-get(map-get($colors, brand), accent)};
+  
+  --color-success: #{map-get(map-get($colors, semantic), success)};
+  --color-warning: #{map-get(map-get($colors, semantic), warning)};
+  --color-error: #{map-get(map-get($colors, semantic), error)};
+  --color-info: #{map-get(map-get($colors, semantic), info)};
+  
+  // Surface colors
+  --color-surface-1: var(--color-bg-primary);
+  --color-surface-2: var(--color-bg-secondary);
+  --color-surface-3: var(--color-bg-tertiary);
+  
+  // Component colors
+  --color-button-primary-bg: var(--color-brand-primary);
+  --color-button-primary-text: white;
+  --color-button-secondary-bg: var(--color-brand-secondary);
+  --color-button-secondary-text: white;
+  
+  // Shadow
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+}
+
+// Dark Theme
+[data-theme="dark"] {
+  --color-bg-primary: #{map-get(map-get($colors, neutral), 900)};
+  --color-bg-secondary: #{map-get(map-get($colors, neutral), 800)};
+  --color-bg-tertiary: #{map-get(map-get($colors, neutral), 700)};
+  
+  --color-text-primary: #{map-get(map-get($colors, neutral), 50)};
+  --color-text-secondary: #{map-get(map-get($colors, neutral), 200)};
+  --color-text-tertiary: #{map-get(map-get($colors, neutral), 400)};
+  
+  --color-border-primary: #{map-get(map-get($colors, neutral), 600)};
+  --color-border-secondary: #{map-get(map-get($colors, neutral), 700)};
+  
+  // Adjust brand colors for dark theme (slightly lighter)
+  --color-brand-primary: #{lighten(map-get(map-get($colors, brand), primary), 10%)};
+  --color-brand-secondary: #{lighten(map-get(map-get($colors, brand), secondary), 10%)};
+  --color-brand-accent: #{lighten(map-get(map-get($colors, brand), accent), 10%)};
+  
+  // Shadow adjustments for dark mode
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5);
+}
+
+// Theme Mixins
+@mixin light-theme {
+  [data-theme="light"] & {
+    @content;
+  }
+}
+
+@mixin dark-theme {
+  [data-theme="dark"] & {
+    @content;
+  }
+}

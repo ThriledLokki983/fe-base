@@ -1,13 +1,39 @@
 /* stylelint-disable no-duplicate-selectors */
 
-@import-normalize;
+// Import normalize.css
+@import-normalize('normalize.css');
 
-@import 'utility/variables';
-@import 'utility/functions';
-@import 'utility/mixins';
-@import 'utility/font-imports';
-@import 'utility/font-mixins';
+// Import variables and functions first
+// @use 'utility/variables';
+@use 'utility/functions';
+@use 'utility/mixins';
 
+// Import fonts
+@use 'utility/font-setup';
+@use 'utility/font-mixins';
+
+// Import design system
+@use 'themes';
+@use 'design-tokens';
+@use 'utility/theme-utils';
+@use 'utility/font-imports';
+@use 'utility/font-mixins';
+
+/**
+ * Core
+ */
+:root {
+    margin: 0;
+    box-sizing: border-box;
+    font-size: 16px; 
+    quotes: '"' '"' ''' ''';
+    accent-color: var(--color-brand-primary);
+    
+    // Set default theme
+    &:not([data-theme]) {
+        @extend [data-theme="light"];
+    }
+} no-duplicate-selectors */
 
 /**
  * Core
