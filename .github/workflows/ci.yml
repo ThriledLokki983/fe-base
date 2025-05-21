@@ -27,10 +27,10 @@ jobs:
           cache: 'npm'
       
       - name: Install dependencies
-        run: npm ci
+        run: npm install
         
-      - name: Install other dependencies if needed
-        run: npm install -g npm@latest # Ensure npm is latest version
+      - name: Install testing dependencies
+        run: npm install vitest @vitest/ui @vitest/coverage-v8 jsdom --no-save
       
       - name: Run linter
         run: npm run lint
