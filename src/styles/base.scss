@@ -2,6 +2,7 @@
 @use 'utility' as utils;
 @use 'utility/font-setup';
 @use 'utility/font-mixins' as fonts;
+@use 'utility/mixins' as mixins;
 @use 'effects';
 @use 'themes';
 
@@ -42,6 +43,7 @@ body {
   font-family: fonts.$font-primary;
   @include utils.typography(body);
   @include fonts.font-smoothing;
+  @include mixins.styled-scrollbar; 
 }
 
 /**

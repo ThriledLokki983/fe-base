@@ -1,4 +1,5 @@
 @use 'sass:map';
+@use 'sass:color';
 
 // Design tokens - Base colors
 $colors: (
@@ -60,21 +61,21 @@ $colors: (
   --color-brand-accent: #{map.get(map.get($colors, brand), accent)};
   
   // Semantic colors
-  --color-success: #{map-get(map-get($colors, semantic), success)};
-  --color-success-light: #{map-get(map-get($colors, semantic), success-light)};
-  --color-success-dark: #{map-get(map-get($colors, semantic), success-dark)};
+  --color-success: #{map.get(map.get($colors, semantic), success)};
+  --color-success-light: #{map.get(map.get($colors, semantic), success-light)};
+  --color-success-dark: #{map.get(map.get($colors, semantic), success-dark)};
   
-  --color-warning: #{map-get(map-get($colors, semantic), warning)};
-  --color-warning-light: #{map-get(map-get($colors, semantic), warning-light)};
-  --color-warning-dark: #{map-get(map-get($colors, semantic), warning-dark)};
+  --color-warning: #{map.get(map.get($colors, semantic), warning)};
+  --color-warning-light: #{map.get(map.get($colors, semantic), warning-light)};
+  --color-warning-dark: #{map.get(map.get($colors, semantic), warning-dark)};
   
-  --color-error: #{map-get(map-get($colors, semantic), error)};
-  --color-error-light: #{map-get(map-get($colors, semantic), error-light)};
-  --color-error-dark: #{map-get(map-get($colors, semantic), error-dark)};
+  --color-error: #{map.get(map.get($colors, semantic), error)};
+  --color-error-light: #{map.get(map.get($colors, semantic), error-light)};
+  --color-error-dark: #{map.get(map.get($colors, semantic), error-dark)};
   
-  --color-info: #{map-get(map-get($colors, semantic), info)};
-  --color-info-light: #{map-get(map-get($colors, semantic), info-light)};
-  --color-info-dark: #{map-get(map-get($colors, semantic), info-dark)};
+  --color-info: #{map.get(map.get($colors, semantic), info)};
+  --color-info-light: #{map.get(map.get($colors, semantic), info-light)};
+  --color-info-dark: #{map.get(map.get($colors, semantic), info-dark)};
   
   // Surface colors
   --color-surface-1: var(--color-bg-primary);
@@ -102,21 +103,20 @@ $colors: (
 
 // Dark Theme
 [data-theme="dark"] {
-  --color-bg-primary: #{map-get(map-get($colors, neutral), 900)};
-  --color-bg-secondary: #{map-get(map-get($colors, neutral), 800)};
-  --color-bg-tertiary: #{map-get(map-get($colors, neutral), 700)};
+  --color-bg-primary: #{map.get(map.get($colors, neutral), 900)};
+  --color-bg-secondary: #{map.get(map.get($colors, neutral), 800)};
+  --color-bg-tertiary: #{map.get(map.get($colors, neutral), 700)};
   
-  --color-text-primary: #{map-get(map-get($colors, neutral), 50)};
-  --color-text-secondary: #{map-get(map-get($colors, neutral), 200)};
-  --color-text-tertiary: #{map-get(map-get($colors, neutral), 400)};
+  --color-text-primary: #{map.get(map.get($colors, neutral), 50)};
+  --color-text-secondary: #{map.get(map.get($colors, neutral), 200)};
+  --color-text-tertiary: #{map.get(map.get($colors, neutral), 400)};
   
-  --color-border-primary: #{map-get(map-get($colors, neutral), 600)};
-  --color-border-secondary: #{map-get(map-get($colors, neutral), 700)};
-  
-  --color-brand-primary: #{lighten(map-get(map-get($colors, brand), primary), 10%)};
-  --color-brand-secondary: #{lighten(map-get(map-get($colors, brand), secondary), 10%)};
-  --color-brand-accent: #{lighten(map-get(map-get($colors, brand), accent), 10%)};
-  
+  --color-border-primary: #{map.get(map.get($colors, neutral), 600)};
+  --color-border-secondary: #{map.get(map.get($colors, neutral), 700)};
+   --color-brand-primary: #{color.scale(map.get(map.get($colors, brand), primary), $lightness: 10%)};
+  --color-brand-secondary: #{color.scale(map.get(map.get($colors, brand), secondary), $lightness: 10%)};
+  --color-brand-accent: #{color.scale(map.get(map.get($colors, brand), accent), $lightness: 10%)};
+
   --color-input-border: var(--color-border-primary);
   --color-input-focus: var(--color-brand-primary);
   --color-input-disabled: var(--color-bg-secondary);

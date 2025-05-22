@@ -156,7 +156,7 @@
 /**
  * Styled scrollbar
  */
-@mixin styled-scrollbar($color: $grey-dark) {
+@mixin styled-scrollbar($color: var(--color-brand-secondary)) {
     // Standardized (currently only Firefox, plus on macOS only when system
     // preferences are set to always show scrollbars).
     scrollbar-color: $color transparent;
