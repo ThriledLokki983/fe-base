@@ -1,3 +1,12 @@
+@use 'sass:map';
+
+// Font variables
+$font-primary: 'Satoshi', -apple-system, system-ui, BlinkMacSystemFont,
+  'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+$body-font: $font-primary;
+$heading-font: $font-primary;
+$mono-font: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+
 /**
  * Types
  */
@@ -9,17 +18,119 @@
 @mixin heading-font($title: false) {
     font-family: $heading-font;
     font-weight: 700;
-    @if ($title) {
-        font-family: $title-font;
+}
+
+@mixin mono-font {
+    font-family: $mono-font;
+    font-weight: 400;
+}
+
+/**
+ * Weights
+ */
+@mixin font-light {
+    font-weight: 300;
+}
+
+@mixin font-regular {
+    font-weight: 400;
+}
+
+@mixin font-medium {
+    font-weight: 500;
+}
+
+@mixin font-semibold {
+    font-weight: 600;
+}
+
+@mixin font-bold {
+    font-weight: 700;
+}
+
+@mixin font-black {
+    font-weight: 900;
+}
+
+/**
+ * Antialiasing
+ */
+@mixin font-smoothing {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+/**
+ * Sizing
+ */
+@mixin font-size($size, $line-height: normal) {
+    font-size: $size;
+    @if $line-height != normal {
+        line-height: $line-height;
     }
 }
 
-@mixin ui-font($bold: false, $line-height: true) {
-    font-family: $ui-font;
-    font-weight: 500; line-height: 1.25; letter-spacing: -0.025em;
-    @if ($bold) {
-        font-weight: 700;
-    }
+/**
+ * Line Height
+ */
+@mixin line-height($height) {
+    line-height: $height;
+}
+
+/**
+ * Alignment
+ */
+@mixin text-left {
+    text-align: left;
+}
+
+@mixin text-center {
+    text-align: center;
+}
+
+@mixin text-right {
+    text-align: right;
+}
+
+/**
+ * Transforms
+ */
+@mixin text-uppercase {
+    text-transform: uppercase;
+}
+
+@mixin text-lowercase {
+    text-transform: lowercase;
+}
+
+@mixin text-capitalize {
+    text-transform: capitalize;
+}
+
+/**
+ * Font Style
+ */
+@mixin font-italic {
+    font-style: italic;
+}
+
+/**
+ * Text Decoration
+ */
+@mixin text-underline {
+    text-decoration: underline;
+}
+
+@mixin text-no-underline {
+    text-decoration: none;
+}
+
+/**
+ * Letter Spacing
+ */
+@mixin letter-spacing($spacing) {
+    letter-spacing: $spacing;
 }
 
 /**

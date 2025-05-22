@@ -191,11 +191,11 @@
 /**
  * Smooth scrolling
  */
-@mixin smooth-scrolling {
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-    -ms-overflow-style: -ms-autohiding-scrollbar;
-}
+// @mixin smooth-scrolling {
+//     scroll-behavior: smooth;
+//     -webkit-overflow-scrolling: touch;
+//     -ms-overflow-style: -ms-autohiding-scrollbar;
+// }
 
 /**
  * Placeholder styling
@@ -221,15 +221,15 @@
 /**
  * Font smoothing
  */
-@mixin font-smoothing($enabled: true) {
-    @if $enabled {
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-    } @else {
-        -webkit-font-smoothing: initial;
-        -moz-osx-font-smoothing: initial;
-    }
-}
+// @mixin font-smoothing($enabled: true) {
+//     @if $enabled {
+//         -webkit-font-smoothing: antialiased;
+//         -moz-osx-font-smoothing: grayscale;
+//     } @else {
+//         -webkit-font-smoothing: initial;
+//         -moz-osx-font-smoothing: initial;
+//     }
+// }
 
 /**
  * Media query dark mode

@@ -1,14 +1,15 @@
+
+
+// Import utility modules
+@use 'utility' as utils;
+@use 'utility/font-setup';
+@use 'utility/font-imports';
+@use 'utility/font-mixins' as fonts;
+
 /* stylelint-disable no-duplicate-selectors */
 // Import normalize
 @import-normalize;
 
-// Import all utility functions and mixins
-@import 'utility';
-
-// Import fonts
-@import 'utility/font-setup';
-@import 'utility/font-imports';
-@import 'utility/font-mixins';
 
 /**
  * Core
@@ -17,8 +18,8 @@
   margin: 0;
   box-sizing: border-box;
   font-size: 16px;
-  font-family: $font-primary;
-  @include font-smoothing;
+  font-family: fonts.$font-primary;
+  @include fonts.font-smoothing;
 }
 
 *,
@@ -38,9 +39,9 @@ body {
   min-height: 100%;
   background: var(--color-bg-primary);
   color: var(--color-text-primary);
-  font-family: $font-primary;
-  @include typography(body);
-  @include font-smoothing;
+  font-family: fonts.$font-primary;
+  @include utils.typography(body);
+  @include fonts.font-smoothing;
 }
 
 /**
