@@ -215,10 +215,10 @@
   display: flex;
   align-items: center;
   gap: var(--space-sm);
-  padding: var(--space-sm) var(--space-md);
+  padding: var(--space-md);
   background: transparent;
   border: none;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-lg);
   color: var(--color-text-primary);
   font-size: 16px;
   cursor: pointer;
@@ -227,10 +227,6 @@
   &:hover {
     background: var(--color-bg-secondary);
     transform: translateX(4px);
-  }
-
-  &:not(:last-child) {
-    margin-bottom: var(--space-xs);
   }
 
   .menuItemIcon {

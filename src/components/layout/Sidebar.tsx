@@ -96,7 +96,7 @@ export default function Sidebar() {
               <span className={styles.userEmail}>user@example.com</span>
             </div>
           </div>
-          <button 
+          <div 
             className={styles.userMenuButton}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-expanded={isMenuOpen}
@@ -112,7 +112,7 @@ export default function Sidebar() {
                 strokeWidth={1.5}
                 className={`${styles.chevron} ${!isMenuOpen ? styles.chevronRotated : ''}`}
             />
-          </button>
+          </div>
         </button>
         
         {isMenuOpen && (

@@ -83,7 +83,7 @@
 .actions {
   display: flex;
   align-items: center;
-  gap: var(--space-md);
+  gap: var(--space-sm);
 }
 
 .icon {
@@ -159,7 +159,10 @@
   transition: background-color 0.2s ease;
 
   &:hover {
-    background: var(--color-bg-secondary);
+    > svg {
+        color: var(--color-brand-primary);
+        transform: translateY(-2px) scale(1.05) rotate(-180deg);
+    }
   }
 
    > div {
@@ -168,7 +171,8 @@
     }
 
     > svg {
-        margin-left: 1.5rem;
+        margin-left: 1.25rem;
+        transition: all 0.2s ease;
     }
 }
 
@@ -191,14 +195,4 @@
   font-size: 0.75rem;
   color: var(--color-text-secondary);
   margin-left: var(--space-xs);
-}
-
-.userMenuButton {
-    appearance: none;
-    background: transparent; border: 0;
-    font-family: inherit; line-height: 1.1;
-    text-decoration: none; text-align: center;
-    cursor: pointer;
-
-   
 }
