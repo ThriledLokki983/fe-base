@@ -1,4 +1,5 @@
 @use 'sass:math';
+@use 'sass:map';
 
 /**
  * For converting pixels to ems.
@@ -13,8 +14,8 @@
  * For dynamically determining the stacking order of elements.
  */
 @function z($element) {
-    @if map-has-key($z-index, $element) {
-        @return map-get($z-index, $element);
+    @if map.has-key($z-index, $element) {
+        @return map.get($z-index, $element);
     }
     @else {
         @error "Z-index '#{$element}' not found";

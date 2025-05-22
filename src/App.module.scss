@@ -1,4 +1,4 @@
-@import './styles/utils';
+@use 'styles/utility' as *;
 
 .app {
   display: flex;

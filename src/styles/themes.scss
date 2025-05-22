@@ -1,3 +1,5 @@
+@use 'sass:map';
+
 // Design tokens - Base colors
 $colors: (
   brand: (
@@ -38,24 +40,24 @@ $colors: (
 // Theme Variables
 :root {
   // Base colors
-  --color-white: #{map-get(map-get($colors, neutral), 50)};
-  --color-black: #{map-get(map-get($colors, neutral), 900)};
+  --color-white: #{map.get(map.get($colors, neutral), 50)};
+  --color-black: #{map.get(map.get($colors, neutral), 900)};
 
   // Light Theme (default)
   --color-bg-primary: var(--color-white);
-  --color-bg-secondary: #{map-get(map-get($colors, neutral), 100)};
+  --color-bg-secondary: #{map.get(map.get($colors, neutral), 100)};
   --color-bg-tertiary: white;
   
   --color-text-primary: var(--color-black);
-  --color-text-secondary: #{map-get(map-get($colors, neutral), 600)};
-  --color-text-tertiary: #{map-get(map-get($colors, neutral), 400)};
+  --color-text-secondary: #{map.get(map.get($colors, neutral), 600)};
+  --color-text-tertiary: #{map.get(map.get($colors, neutral), 400)};
   
-  --color-border-primary: #{map-get(map-get($colors, neutral), 200)};
-  --color-border-secondary: #{map-get(map-get($colors, neutral), 100)};
+  --color-border-primary: #{map.get(map.get($colors, neutral), 200)};
+  --color-border-secondary: #{map.get(map.get($colors, neutral), 100)};
   
-  --color-brand-primary: #{map-get(map-get($colors, brand), primary)};
-  --color-brand-secondary: #{map-get(map-get($colors, brand), secondary)};
-  --color-brand-accent: #{map-get(map-get($colors, brand), accent)};
+  --color-brand-primary: #{map.get(map.get($colors, brand), primary)};
+  --color-brand-secondary: #{map.get(map.get($colors, brand), secondary)};
+  --color-brand-accent: #{map.get(map.get($colors, brand), accent)};
   
   // Semantic colors
   --color-success: #{map-get(map-get($colors, semantic), success)};

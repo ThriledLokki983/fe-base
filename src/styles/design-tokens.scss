@@ -1,3 +1,5 @@
+@use 'sass:map';
+
 // Typography System
 $font-families: (
   heading: ('Satoshi', 'PwC Helvetica Neue', 'Helvetica Neue', 'Helvetica', sans-serif),
@@ -162,25 +164,25 @@ $card-variants: (
 
 :root {
   // Set font family CSS variables
-  --font-heading: #{map-get($font-families, heading)};
-  --font-body: #{map-get($font-families, body)};
-  --font-ui: #{map-get($font-families, ui)};
-  --font-system: #{map-get($font-families, system)};
+  --font-heading: #{map.get($font-families, heading)};
+  --font-body: #{map.get($font-families, body)};
+  --font-ui: #{map.get($font-families, ui)};
+  --font-system: #{map.get($font-families, system)};
   
   // Set border radius CSS variables
-  --radius-sm: #{map-get($border-radius, sm)};
-  --radius-md: #{map-get($border-radius, md)};
-  --radius-lg: #{map-get($border-radius, lg)};
-  --radius-xl: #{map-get($border-radius, xl)};
+  --radius-sm: #{map.get($border-radius, sm)};
+  --radius-md: #{map.get($border-radius, md)};
+  --radius-lg: #{map.get($border-radius, lg)};
+  --radius-xl: #{map.get($border-radius, xl)};
   
   // Set spacing CSS variables
-  --space-xs: #{map-get($spacing, xs)};
-  --space-sm: #{map-get($spacing, sm)};
-  --space-md: #{map-get($spacing, md)};
-  --space-lg: #{map-get($spacing, lg)};
-  --space-xl: #{map-get($spacing, xl)};
-  --space-2xl: #{map-get($spacing, 2xl)};
-  --space-3xl: #{map-get($spacing, 3xl)};
-  --space-gutter: #{map-get($spacing, gutter)};
-  --space-site: #{map-get($spacing, site)};
+  --space-xs: #{map.get($spacing, xs)};
+  --space-sm: #{map.get($spacing, sm)};
+  --space-md: #{map.get($spacing, md)};
+  --space-lg: #{map.get($spacing, lg)};
+  --space-xl: #{map.get($spacing, xl)};
+  --space-2xl: #{map.get($spacing, 2xl)};
+  --space-3xl: #{map.get($spacing, 3xl)};
+  --space-gutter: #{map.get($spacing, gutter)};
+  --space-site: #{map.get($spacing, site)};
 }

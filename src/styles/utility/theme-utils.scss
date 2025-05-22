@@ -14,12 +14,12 @@
 
 // Typography Utilities
 @mixin typography($variant) {
-  $style: map-get($typography, $variant);
+  $style: map.get($typography, $variant);
   
   @if $style {
-    font-size: map-get($style, font-size);
-    line-height: map-get($style, line-height);
-    font-weight: map-get($style, font-weight);
+    font-size: map.get($style, font-size);
+    line-height: map.get($style, line-height);
+    font-weight: map.get($style, font-weight);
     
     @if map.has-key($style, letter-spacing) {
       letter-spacing: map.get($style, letter-spacing);
@@ -27,62 +27,55 @@
   }
 }
 
-// Just a separator between sections
-
 // Component Utilities
 @mixin button-variant($variant) {
-  $style: map-get($button-variants, $variant);
-  background-color: map-get($style, background);
-  color: map-get($style, color);
+  $style: map.get($button-variants, $variant);
+  background-color: map.get($style, background);
+  color: map.get($style, color);
   
-  @if map-has-key($style, border) {
-    border: 1px solid map-get($style, border);
+  @if map.has-key($style, border) {
+    border: 1px solid map.get($style, border);
   }
   
   &:hover {
-    background-color: map-get($style, hover);
+    background-color: map.get($style, hover);
   }
   
   &:active {
-    background-color: map-get($style, active);
+    background-color: map.get($style, active);
   }
 }
 
 @mixin input-variant($variant: "default") {
-  $style: map-get($input-variants, $variant);
-  background-color: map-get($style, background);
-  border: 1px solid map-get($style, border);
-  color: map-get($style, text);
+  $style: map.get($input-variants, $variant);
+  background-color: map.get($style, background);
+  border: 1px solid map.get($style, border);
+  color: map.get($style, text);
   
   &::placeholder {
-    color: map-get($style, placeholder);
+    color: map.get($style, placeholder);
   }
 }
 
 @mixin card-variant($variant: "default") {
-  $style: map-get($card-variants, $variant);
-  background-color: map-get($style, background);
+  $style: map.get($card-variants, $variant);
+  background-color: map.get($style, background);
   
-  @if map-has-key($style, border) {
-    border: 1px solid map-get($style, border);
+  @if map.has-key($style, border) {
+    border: 1px solid map.get($style, border);
   }
   
-  @if map-has-key($style, shadow) {
-    box-shadow: map-get($style, shadow);
+  @if map.has-key($style, shadow) {
+    box-shadow: map.get($style, shadow);
   }
 }
 
 // Responsive Utilities
 @mixin breakpoint($size) {
-  @media (min-width: map-get($breakpoints, $size)) {
+  @media (min-width: map.get($breakpoints, $size)) {
     @content;
   }
 }
-
-// Example usage:
-// @include breakpoint(md) {
-//   // styles for medium and up
-// }
 
 // Color Utilities
 @mixin surface($level: 1) {
@@ -99,11 +92,11 @@
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-  padding-left: map-get($spacing, md);
-  padding-right: map-get($spacing, md);
+  padding-left: map.get($spacing, md);
+  padding-right: map.get($spacing, md);
   
   @if type-of($max-width) == string {
-    max-width: map-get($breakpoints, $max-width);
+    max-width: map.get($breakpoints, $max-width);
   } @else {
     max-width: $max-width;
   }
