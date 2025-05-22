@@ -29,7 +29,7 @@ const userMenuItems = [
   { id: 'logout', label: 'Logout', icon: <LogOut size={16} strokeWidth={1.5} /> },
 ];
 
-export default function Sidebar() {
+const Sidebar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -125,4 +125,7 @@ export default function Sidebar() {
       </div>
     </aside>
   );
-}
+};
+
+
+export default Sidebar;

@@ -13,7 +13,7 @@
   gap: var(--space-lg);
   position: sticky;
   top: 0;
-  height: calc(100dvh - var(--space-lg));
+  height: calc(100dvh - var(--space-lg) - var(--space-md));
   overflow-y: auto;
   z-index: 10;
 }

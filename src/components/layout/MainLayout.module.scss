@@ -3,9 +3,13 @@
 
 .layout {
   display: flex;
-  min-height: 100vh;
+  min-height: calc(100dvh - var(--space-lg) - var(--space-xs));
   background: var(--color-bg-primary);
   padding: var(--space-md);
+
+  // border: 1px solid var(--border-medium);
+  border-radius: var(--radius-lg);
+  margin: var(--space-xs);
 }
 
 .content {
@@ -13,7 +17,6 @@
   display: flex;
   flex-direction: column;
   min-width: 0; // Prevent content from overflowing flex container
-  box-shadow: inset 1px 0 0 var(--color-border-primary);
 }
 
 .main {
@@ -21,4 +24,11 @@
   padding: var(--space-lg);
   overflow-y: auto;
   background: var(--color-bg-secondary);
+  height: calc(100dvh - var(--space-lg) - var(--space-md));
+  border-radius: var(--radius-lg);
+  // border-top-right-radius: var(--radius-lg);
+  // border-bottom-right-radius: var(--radius-lg);
+  // box-shadow: var(--shadow-elevation-high);
+  margin-inline: var(--space-md) 0;
+  margin-block: var(--space-md) 0;  
 }

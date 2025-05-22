@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
-import styles from './MainLayout.module.scss';
 import Sidebar from './Sidebar';
 import Header from './Header';
+import styles from './MainLayout.module.scss';
 
 interface MainLayoutProps {
   children: ReactNode;
