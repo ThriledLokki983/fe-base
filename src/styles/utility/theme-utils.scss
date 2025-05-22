@@ -1,3 +1,6 @@
+@use '../design-tokens' as *;
+@use 'sass:map';
+
 // Design System Utility Mixins
 
 // Theme Utilities
@@ -12,23 +15,19 @@
 // Typography Utilities
 @mixin typography($variant) {
   $style: map-get($typography, $variant);
-  font-size: map-get($style, font-size);
-  line-height: map-get($style, line-height);
-  font-weight: map-get($style, font-weight);
+  
+  @if $style {
+    font-size: map-get($style, font-size);
+    line-height: map-get($style, line-height);
+    font-weight: map-get($style, font-weight);
+    
+    @if map.has-key($style, letter-spacing) {
+      letter-spacing: map.get($style, letter-spacing);
+    }
+  }
 }
 
-// Spacing Utilities
-@mixin spacing($property, $size) {
-  #{$property}: map-get($spacing, $size);
-}
-
-@mixin padding($size) {
-  @include spacing(padding, $size);
-}
-
-@mixin margin($size) {
-  @include spacing(margin, $size);
-}
+// Just a separator between sections
 
 // Component Utilities
 @mixin button-variant($variant) {

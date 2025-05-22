@@ -27,22 +27,22 @@
 /**
  * Default contained container.
  */
-@mixin container($size: $content-max-width, $padding: true, $full-height: false) {
-    margin: 0 auto;
-    max-width: calc(#{$size} + #{($gutter * 2)});
-    @include bp-min($small) {
-        max-width: calc(#{$size} + #{($gutter * 4)});
-    }
-    @if ($padding) {
-        @include container-padding;
-    }
-    @if ($full-height) {
-        margin-top: -($gutter);
-        display: flex; flex-direction: column;
-        justify-content: center; align-items: flex-start;
-        min-height: calc(100vh - ($gutter-site * 2));
-    }
-}
+// @mixin container($size: $content-max-width, $padding: true, $full-height: false) {
+//     margin: 0 auto;
+//     max-width: calc(#{$size} + #{($gutter * 2)});
+//     @include bp-min($small) {
+//         max-width: calc(#{$size} + #{($gutter * 4)});
+//     }
+//     @if ($padding) {
+//         @include container-padding;
+//     }
+//     @if ($full-height) {
+//         margin-top: -($gutter);
+//         display: flex; flex-direction: column;
+//         justify-content: center; align-items: flex-start;
+//         min-height: calc(100vh - ($gutter-site * 2));
+//     }
+// }
 
 /**
  * Pointer device + SPA-safe hover.
