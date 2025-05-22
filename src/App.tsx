@@ -1,24 +1,23 @@
+import MainLayout from './components/layout/MainLayout';
 import EnvironmentInfo from './components/common/EnvironmentInfo';
 import styles from './App.module.scss';
 
 function App() {
   return (
-    <div className={styles.app}>
-      <div className={styles.container}>
+    <MainLayout>
+      <div className={styles.dashboard}>
         <header className={styles.header}>
-          <div>
-            <h1 className={styles.title}>React Base Application</h1>
-            <p className={styles.subtitle}>A modern, sophisticated starting point</p>
-          </div>
+          <h1 className={styles.title}>Dashboard</h1>
+          <p className={styles.subtitle}>Welcome back! Here's your overview.</p>
         </header>
         
-        <main>
-          <div className="card elevated">
+        <main className={styles.content}>
+          <div className={styles.card}>
             <EnvironmentInfo />
           </div>
         </main>
       </div>
-    </div>
+    </MainLayout>
   );
 }
 

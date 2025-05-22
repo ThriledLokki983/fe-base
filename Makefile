@@ -140,7 +140,7 @@ generate-lockfile:
 	@echo "Updating package-lock.json file with all dependencies..."
 	npm install
 	@echo "Installing development dependencies for testing and build..."
-	npm install vitest @vitest/ui @vitest/coverage-v8 jsdom vite-plugin-svgr
+	npm install vitest @vitest/ui @vitest/coverage-v8 jsdom vite-plugin-svgr lucide-react
 	@echo "package-lock.json file has been generated with all dependencies."
 
 open-app:

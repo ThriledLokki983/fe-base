@@ -77,6 +77,35 @@ $typography: (
   )
 );
 
+// Border System
+$borders: (
+  light: (
+    color: rgba(0, 0, 0, 0.05),
+    shadow: 0 0 1px rgba(0, 0, 0, 0.03)
+  ),
+  medium: (
+    color: rgba(0, 0, 0, 0.1),
+    shadow: 0 0 2px rgba(0, 0, 0, 0.05)
+  ),
+  strong: (
+    color: rgba(0, 0, 0, 0.15),
+    shadow: 0 1px 3px rgba(0, 0, 0, 0.1)
+  )
+);
+
+// Generate CSS variables for borders
+:root {
+  // Border colors
+  --border-light: #{map.get($borders, "light", "color")};
+  --border-medium: #{map.get($borders, "medium", "color")};
+  --border-strong: #{map.get($borders, "strong", "color")};
+  
+  // Border shadows
+  --shadow-light: #{map.get($borders, "light", "shadow")};
+  --shadow-medium: #{map.get($borders, "medium", "shadow")};
+  --shadow-strong: #{map.get($borders, "strong", "shadow")};
+}
+
 // Spacing Scale
 $spacing: (
   xs: 0.25rem,   // 4px

@@ -1,10 +1,9 @@
-
-
 // Import utility modules
 @use 'utility' as utils;
 @use 'utility/font-setup';
-@use 'utility/font-imports';
 @use 'utility/font-mixins' as fonts;
+@use 'effects';
+@use 'themes';
 
 /* stylelint-disable no-duplicate-selectors */
 // Import normalize
@@ -19,6 +18,7 @@
   box-sizing: border-box;
   font-size: 16px;
   font-family: fonts.$font-primary;
+  @include fonts.font-regular;
   @include fonts.font-smoothing;
 }
 
