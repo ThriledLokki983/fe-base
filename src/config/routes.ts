@@ -1,6 +1,6 @@
 import { type RouteObject } from 'react-router-dom';
 import { createElement } from 'react';
-import { PATH_HOME, PATH_NOT_FOUND } from './paths';
+import { PATH_HOME, PATH_COMPONENTS, PATH_NOT_FOUND } from './paths';
 
 import type { CustomRouteObject } from '@config/interfaces/routes.interface';
 import Layout from '@components/layout/MainLayout';
@@ -25,6 +25,16 @@ const ROUTES_ALL: RouteObject[] = [
           isNav: true,
           isEnd: true,
           title: 'Home',
+        },
+      } as CustomRouteObject,
+      {
+        path: PATH_COMPONENTS,
+        element: createElement(Pages.Components),
+        ...{
+          label: 'Components',
+          isNav: true,
+          isEnd: true,
+          title: 'Components',
         },
       } as CustomRouteObject,
       {

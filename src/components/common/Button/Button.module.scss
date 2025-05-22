@@ -38,42 +38,72 @@
     font-size: 1.125rem;
   }
 
+  // Base focus styles
+  &:focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+  }
+
   // Variants
   &[data-variant='primary'] {
     background: var(--color-brand-primary);
     color: white;
-    box-shadow: 0 2px 4px rgba(49, 112, 57, 0.1);
+    box-shadow: 
+      0 2px 4px -2px rgba(45, 91, 169, 0.2),
+      0 4px 6px -1px rgba(45, 91, 169, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
 
     &:hover:not(:disabled) {
       background: var(--color-brand-accent);
-      box-shadow: 0 4px 8px rgba(49, 112, 57, 0.15);
+      box-shadow: 
+        0 4px 6px -2px rgba(58, 117, 219, 0.2),
+        0 6px 12px -1px rgba(58, 117, 219, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
       transform: translateY(-1px);
     }
 
     &:active:not(:disabled) {
       background: var(--color-brand-primary);
-      box-shadow: 0 1px 2px rgba(49, 112, 57, 0.1);
+      box-shadow: 
+        0 1px 2px -1px rgba(45, 91, 169, 0.2),
+        0 2px 4px -1px rgba(45, 91, 169, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
       transform: translateY(0);
+    }
+
+    &:focus-visible:not(:disabled) {
+      outline-color: var(--color-brand-accent);
     }
   }
 
   &[data-variant='secondary'] {
     background: var(--color-brand-secondary);
-    color: rgba(0, 0, 0, 0.75);
-    border: 1px solid rgba(241, 190, 73, 0.2);
-    box-shadow: 0 1px 2px rgba(241, 190, 73, 0.1);
+    color: white;
+    box-shadow: 
+      0 2px 4px -2px rgba(108, 93, 211, 0.2),
+      0 4px 6px -1px rgba(108, 93, 211, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.12);
 
     &:hover:not(:disabled) {
-      background: rgba(241, 190, 73, 0.9);
-      border-color: rgba(241, 190, 73, 0.3);
-      box-shadow: 0 2px 4px rgba(241, 190, 73, 0.15);
+      background: rgba(108, 93, 211, 0.95);
+      box-shadow: 
+        0 4px 6px -2px rgba(108, 93, 211, 0.25),
+        0 6px 12px -1px rgba(108, 93, 211, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
       transform: translateY(-1px);
     }
 
     &:active:not(:disabled) {
       background: var(--color-brand-secondary);
-      box-shadow: 0 1px 2px rgba(241, 190, 73, 0.1);
+      box-shadow: 
+        0 1px 2px -1px rgba(108, 93, 211, 0.2),
+        0 2px 4px -1px rgba(108, 93, 211, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
       transform: translateY(0);
+    }
+
+    &:focus-visible:not(:disabled) {
+      outline-color: var(--color-brand-secondary);
     }
   }
 
@@ -87,6 +117,75 @@
 
     &:active:not(:disabled) {
       background: var(--color-bg-inset);
+    }
+
+    &:focus-visible:not(:disabled) {
+      outline-color: var(--color-text-primary);
+    }
+  }
+
+  &[data-variant='text'] {
+    background: transparent;
+    color: var(--color-text-primary);
+    padding-left: 0;
+    padding-right: 0;
+
+    &:hover:not(:disabled) {
+      color: var(--color-brand-primary);
+      text-decoration: underline;
+    }
+
+    &:focus-visible:not(:disabled) {
+      outline-color: var(--color-text-primary);
+    }
+
+    &:active:not(:disabled) {
+      color: var(--color-brand-accent);
+    }
+  }
+
+  &[data-variant='link'] {
+    background: transparent;
+    color: var(--color-brand-primary);
+    padding-left: 0;
+    padding-right: 0;
+    text-decoration: underline;
+
+    &:hover:not(:disabled) {
+      color: var(--color-brand-accent);
+    }
+
+    &:focus-visible:not(:disabled) {
+      outline-color: var(--color-brand-primary);
+    }
+
+    &:active:not(:disabled) {
+      color: var(--color-brand-accent);
+    }
+  }
+
+  &[data-variant='outline'] {
+    background: transparent;
+    color: var(--color-brand-primary);
+    border: 2px solid currentColor;
+
+    &:hover:not(:disabled) {
+      background: rgba(var(--color-brand-primary-rgb), 0.05);
+      color: var(--color-brand-accent);
+      transform: translateY(-1px);
+    }
+
+    &:focus-visible:not(:disabled) {
+      outline-color: var(--color-brand-primary);
+    }
+
+    &:active:not(:disabled) {
+      background: rgba(var(--color-brand-primary-rgb), 0.1);
+      transform: translateY(0);
+    }
+
+    &:disabled {
+      border-color: currentColor;
     }
   }
 }

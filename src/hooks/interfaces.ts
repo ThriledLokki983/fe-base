@@ -1,6 +1,6 @@
 import type { Dispatch } from 'react';
-
-import type { CustomRouteObject, CssBreakPointsInterface } from '@hooks/interfaces';
+import type { CssBreakPointsInterface } from '@config/interfaces/constants.interface';
+import type { CustomRouteObject } from '@config/interfaces/routes.interface';
 
 interface InitialState {
   route: CustomRouteObject | Record<string, unknown>;

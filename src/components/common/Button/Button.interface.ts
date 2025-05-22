@@ -1,5 +1,5 @@
 export interface ButtonProps {
-  variant?: 'primary' | 'secondary' | 'subtle';
+  variant?: 'primary' | 'secondary' | 'subtle' | 'text' | 'link' | 'outline';
   size?: 'small' | 'medium' | 'large';
   url?: string;
   type?: 'button' | 'submit';
