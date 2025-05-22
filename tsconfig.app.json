@@ -28,16 +28,16 @@
 
     /* Path Resolutions */
     "paths": {
-      "assets/*": ["assets/*"],
-      "components/*": ["components/*"],
-      "configs/*": ["configs/*"],
-      "contexts/*": ["contexts/*"],
-      "data/*": ["data/*"],
-      "helpers/*": ["helpers/*"],
-      "hooks/*": ["hooks/*"],
-      "hocs/*": ["hocs/*"],
-      "pages/*": ["pages/*"],
-      "styles/*": ["styles/*"]
+      "@assets/*": ["assets/*"],
+      "@components/*": ["components/*"],
+      "@contexts/*": ["contexts/*"],
+      "@data/*": ["data/*"],
+      "@hooks/*": ["hooks/*"],
+      "@hocs/*": ["hocs/*"],
+      "@pages/*": ["pages/*"],
+      "@styles/*": ["styles/*"],
+      "@config/*": ["config/*"],
+      "@utils/*": ["utils/*"]
     }
   },
   "include": ["src"],

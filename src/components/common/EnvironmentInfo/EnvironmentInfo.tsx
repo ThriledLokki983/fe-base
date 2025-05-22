@@ -1,4 +1,4 @@
-import env, { isDev, isProd, isStaging } from '../../config/env';
+import env, { isDev, isProd, isStaging } from '../../../config/env';
 import styles from './EnvironmentInfo.module.scss';
 
 interface EnvironmentInfoProps {

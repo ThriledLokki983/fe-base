@@ -10,13 +10,10 @@ import { fileURLToPath } from 'url';
 export default defineConfig(({ mode }) => {
   // Load environment variables based on mode
   const env = loadEnv(mode, process.cwd());
-  
+
   return {
     // Base URL for the application
-    plugins: [
-      react(),
-      svgr(),
-    ],
+    plugins: [react(), svgr()],
 
     // Enable CSS modules
     css: {
@@ -39,12 +36,19 @@ export default defineConfig(({ mode }) => {
     resolve: {
       alias: {
         '@': path.resolve(path.dirname(fileURLToPath(import.meta.url)), './src'),
-        '@components': path.resolve(path.dirname(fileURLToPath(import.meta.url)), './src/components'),
+        '@components': path.resolve(
+          path.dirname(fileURLToPath(import.meta.url)),
+          './src/components'
+        ),
         '@utils': path.resolve(path.dirname(fileURLToPath(import.meta.url)), './src/utils'),
         '@pages': path.resolve(path.dirname(fileURLToPath(import.meta.url)), './src/pages'),
         '@hooks': path.resolve(path.dirname(fileURLToPath(import.meta.url)), './src/hooks'),
         '@config': path.resolve(path.dirname(fileURLToPath(import.meta.url)), './src/config'),
-      }
+        '@contexts': path.resolve(path.dirname(fileURLToPath(import.meta.url)), './src/contexts'),
+        '@hocs': path.resolve(path.dirname(fileURLToPath(import.meta.url)), './src/hocs'),
+        '@styles': path.resolve(path.dirname(fileURLToPath(import.meta.url)), './src/styles'),
+        '@assets': path.resolve(path.dirname(fileURLToPath(import.meta.url)), './src/assets'),
+      },
     },
 
     // Define global constants

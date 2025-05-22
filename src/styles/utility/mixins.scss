@@ -1,3 +1,5 @@
+@forward 'font-mixins';
+
 /**
  * Avatar
  */
@@ -11,6 +13,15 @@
     & > img {
         width: 100%; height: 100%;
         vertical-align: baseline; border-radius: 50%;
+    }
+}
+
+@mixin ui-font($bold: false, $line-height: true) {
+    font-family: var(--body-font), var(--font-ui);
+    font-size: var(--font-size-base);
+    font-weight: 500; line-height: 1.25; letter-spacing: -0.025em;
+    @if ($bold) {
+        font-weight: 700;
     }
 }
 
@@ -89,7 +100,7 @@
     background: transparent; border: 0;
     font-family: inherit; line-height: 1.1;
     text-decoration: none; text-align: center;
-    cursor: pointer; color: $text-color;
+    cursor: pointer;
 }
 
 /*

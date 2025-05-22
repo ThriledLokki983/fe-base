@@ -1,11 +1,23 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { AppStateContextProvider } from '@contexts/AppStateContext';
+
+import App from './App';
+
+// Styles
 import './styles/base.scss';
 import './styles/components/common.module.scss';
-import App from './App.tsx';
 
-createRoot(document.getElementById('root')!).render(
+const container = document.getElementById('root');
+const root = container && createRoot(container);
+
+root?.render(
   <StrictMode>
-    <App />
-  </StrictMode>,
+    <Router>
+      <AppStateContextProvider>
+        <App />
+      </AppStateContextProvider>
+    </Router>
+  </StrictMode>
 );

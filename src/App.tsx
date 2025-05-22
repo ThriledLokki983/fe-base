@@ -1,24 +1,27 @@
-import MainLayout from './components/layout/MainLayout';
-import EnvironmentInfo from './components/common/EnvironmentInfo';
-import styles from './App.module.scss';
+import type { ReactElement } from 'react';
+import { useRoutes } from 'react-router-dom';
+import ROUTES from '@config/routes';
+import { useAppStateContext } from '@contexts/index';
+import withMainAppHocs from '@hocs/index';
+import { App } from '@components/App';
+import { Loader } from '@components/common/index';
 
-function App() {
-  return (
-    <MainLayout>
-      <div className={styles.dashboard}>
-        <header className={styles.header}>
-          <h1 className={styles.title}>Dashboard</h1>
-          <p className={styles.subtitle}>Welcome back! Here's your overview.</p>
-        </header>
-        
-        <main className={styles.content}>
-          <div className={styles.card}>
-            <EnvironmentInfo />
-          </div>
-        </main>
-      </div>
-    </MainLayout>
-  );
+/**
+ * Core component that handles routing and global app state
+ */
+function CoreComponent(): ReactElement | null {
+  const routes = useRoutes(ROUTES);
+  const appState = useAppStateContext();
+
+  if (appState.state.isLoading) {
+    return <Loader aria-label="Application loading" message="Initializing application..." />;
+  }
+
+  return <App routes={routes} />;
 }
 
-export default App;
+/**
+ * Main application with all HOCs applied
+ */
+const WrappedApp = withMainAppHocs(CoreComponent);
+export default WrappedApp;

@@ -98,8 +98,8 @@ const Sidebar = () => {
             </div>
           </div>
           <ChevronDown 
-              size={20} 
-              strokeWidth={1.5} 
+              size={22} 
+              strokeWidth={1.75} 
               className={`${styles.chevron} ${isMenuOpen ? styles.chevronRotated : ''}`}
           />
         </div>

@@ -1,22 +1,26 @@
-import type { ReactNode } from 'react';
+import type { ReactNode, ReactElement } from 'react';
+import { Outlet } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import Header from './Header';
 import styles from './MainLayout.module.scss';
 
-interface MainLayoutProps {
-  children: ReactNode;
+interface LayoutProps {
+  children?: ReactNode | ReactElement | ReactElement[];
 }
 
-export default function MainLayout({ children }: MainLayoutProps) {
+const Layout = ({ children }: LayoutProps) => {
   return (
-    <div className={styles.layout}>
+    <section className={styles.layout}>
       <Sidebar />
       <div className={styles.content}>
         <Header />
         <main className={styles.main}>
+          <Outlet />
           {children}
         </main>
       </div>
-    </div>
+    </section>
   );
-}
+};
+
+export default Layout;
