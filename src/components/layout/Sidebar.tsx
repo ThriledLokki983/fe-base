@@ -8,7 +8,6 @@ import {
   Bot,
   Plug2,
   ChevronDown,
-  ChevronUp,
   LogOut,
   Settings,
   User
@@ -79,9 +78,11 @@ export default function Sidebar() {
       </nav>
 
       <div className={styles.userProfile} ref={menuRef}>
-        <button 
+        <div 
           className={styles.profileButton}
           onClick={() => setIsMenuOpen(!isMenuOpen)}
+          role="button"
+          tabIndex={0}
           aria-expanded={isMenuOpen}
           aria-haspopup="true"
         >
@@ -96,24 +97,12 @@ export default function Sidebar() {
               <span className={styles.userEmail}>user@example.com</span>
             </div>
           </div>
-          <div 
-            className={styles.userMenuButton}
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-expanded={isMenuOpen}
-            aria-haspopup="true"
-          >
-            <ChevronDown 
-                size={20} 
-                strokeWidth={1.5} 
-                className={`${styles.chevron} ${isMenuOpen ? styles.chevronUp : ''}`}
-            />
-            <ChevronUp
-                size={20}
-                strokeWidth={1.5}
-                className={`${styles.chevron} ${!isMenuOpen ? styles.chevronRotated : ''}`}
-            />
-          </div>
-        </button>
+          <ChevronDown 
+              size={20} 
+              strokeWidth={1.5} 
+              className={`${styles.chevron} ${isMenuOpen ? styles.chevronRotated : ''}`}
+          />
+        </div>
         
         {isMenuOpen && (
           <div className={styles.userMenu} role="menu">
