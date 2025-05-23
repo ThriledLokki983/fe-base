@@ -1,0 +1,110 @@
+@use '../../../styles/utils' as *;
+
+.root {
+    --bg-clr: var(--color-surface-1);
+    --main-clr: var(--color-text-primary);
+    --border-clr: var(--color-border-primary);
+
+    margin: var(--space-md) 0;
+    display: flex;
+    align-items: center;
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-lg);
+    background: color-mix(in srgb, var(--bg-clr) 80%, transparent);
+    border: 1px solid var(--border-clr);
+    box-shadow: -1px 2px 4px 1px color-mix(in srgb, var(--main-clr) 8%, transparent);
+    color: var(--main-clr);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(0);
+    opacity: 1;
+
+    &[data-hiding="true"] {
+        transform: translateY(-8px);
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    > svg {
+        flex: 0 0 auto;
+        margin-right: var(--space-md);
+        height: var(--space-lg);
+        width: var(--space-lg);
+        color: var(--main-clr);
+    }
+}
+
+.root__content {
+    flex: 1 1 auto;
+    padding-right: var(--space-sm);
+    line-height: 1.5;
+    font-size: 0.9375rem;
+
+    p {
+        margin: 0;
+
+        &:not(:last-child) {
+            margin-bottom: var(--space-xs);
+        }
+    }
+
+    a {
+        color: inherit;
+        text-decoration: underline;
+        
+        &:hover {
+            opacity: 0.9;
+        }
+    }
+}
+
+.root__remove {
+    @include bare-button;
+    flex: 0 0 auto;
+    padding: var(--space-sm);
+    color: inherit;
+    opacity: 0.7;
+    transition: all 0.2s ease;
+    border-radius: var(--radius-sm);
+
+    &:hover {
+        opacity: 1;
+        background: color-mix(in srgb, var(--main-clr) 10%, transparent);
+    }
+
+    > svg {
+        width: var(--space-md);
+        height: var(--space-md);
+    }
+}
+
+// Variants
+.root {
+    &[data-variation="notice"] {
+        --bg-clr: var(--color-info-light);
+        --border-clr: var(--color-info);
+        --main-clr: var(--color-info);
+    }
+
+    &[data-variation="success"] {
+        --bg-clr: var(--color-success-light);
+        --border-clr: var(--color-success);
+        --main-clr: var(--color-success);
+    }
+
+    &[data-variation="warning"] {
+        --bg-clr: var(--color-warning-light);
+        --border-clr: var(--color-warning);
+        --main-clr: var(--color-warning);
+    }
+
+    &[data-variation="error"] {
+        --bg-clr: var(--color-error-light);
+        --border-clr: var(--color-error);
+        --main-clr: var(--color-error);
+    }
+}
+
+// Add spacing between consecutive alert bars
+[alert-bar] + [alert-bar] {
+    margin-top: calc(var(--space-md) * -0.5);
+}

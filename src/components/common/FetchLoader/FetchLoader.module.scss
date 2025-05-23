@@ -1,10 +1,10 @@
-@import '../../styles/utils';
+@use '../../../styles/utils' as *;
 
 .root {
     z-index: z(fetch-loader);
     position: fixed; top: 0; left: 0;
     display: block; width: 100%; height: 3px;
-    background: lighten($primary-color, 38);
+    background: rgba(var(--color-brand-primary-rgb), 0.2);
     transition: all 0.15s ease;
 }
 .root[aria-hidden="true"] {
@@ -28,11 +28,11 @@
     transform-origin: left;
 }
 .root__inner > span:first-child {
-    background: $primary-color;
+    background: var(--color-brand-primary);
     animation: indeterminate1 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
 }
 .root__inner > span:last-child {
-    background: $primary-color;
+    background: var(--color-brand-primary);
     animation: indeterminate2 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) 1.15s infinite;
 }
 

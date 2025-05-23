@@ -1,5 +1,6 @@
 @use 'sass:math';
 @use 'sass:map';
+@use './variables' as *;
 
 /**
  * For converting pixels to ems.

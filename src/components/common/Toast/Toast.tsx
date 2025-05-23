@@ -1,22 +1,23 @@
-// noinspection HtmlUnknownAttribute
-
-import { useEffect } from 'react';
-
-// import { useAppStateContext } from 'contexts';
-import { Button, Icon } from 'components';
-import type { URLLocation } from './Toast.interface';
-
+import React, { useEffect, useState } from 'react';
+import { AlertCircle, CheckCircle2, Info, XCircle, X } from 'lucide-react';
+import { useAppStateContext } from '@contexts/index';
+import type { ToastProps, URLLocation } from './Toast.interface';
+import { Button } from '@components/common/index';
 import styles from './Toast.module.scss';
+
+const iconMap = {
+  info: <Info size={20} />,
+  success: <CheckCircle2 size={20} />,
+  warning: <AlertCircle size={20} />,
+  error: <XCircle size={20} />,
+};
 
 const ERROR_TIMEOUT = 7500;
 const MESSAGE_TIMEOUT = 2000;
 
 let TIMEOUT: number | null = null;
 
-/**
- * Toast, used for showing errors and messages.
- */
-const Toast = () => {
+const Toast: React.FC<ToastProps> = ({ type, title, message, active, onClose }) => {
   const { toast, hideToast } = useAppStateContext();
 
   const hide = () => hideToast();
@@ -43,26 +44,30 @@ const Toast = () => {
   };
 
   return (
-    <div className={styles.root} role="alert" data-type={toast.type} aria-hidden={!toast.active}>
-      <div className={styles.root__inner}>
-        <div className={styles.root__content}>
-          <h3>{toast.title || `Request failed`}</h3>
-          <p>{toast.message || `Unknown error`}</p>
-        </div>
-        <Button
-          type="button"
-          url={toast.button?.url}
-          onClick={clickHandler}
-          data-has-label={toast.reload || !!toast.button?.label}
-        >
-          {toast.reload ? (
-            'Reload'
-          ) : toast.button?.label ? (
-            toast.button.label
-          ) : (
-            <Icon name="cross-fill" color="currentColor" />
-          )}
-        </Button>
+    <div
+      className={styles.toast}
+      data-type={type}
+      role="alert"
+      aria-live="polite"
+      aria-hidden={!toast.active}
+      onAnimationEnd={clickHandler}
+    >
+      <div className={styles.icon}>{iconMap[type]}</div>
+      <div className={styles.content}>
+        <header className={styles.header}>
+          <h3 className={styles.title}>{toast.title || `Request failed`}</h3>
+          <Button
+            type="button"
+            // className={styles.closeButton}
+            url={toast.button?.url}
+            onClick={onClose}
+            aria-label="Close notification"
+            data-has-label={toast.reload || !!toast.button?.label}
+          >
+            {toast.reload ? 'Reload' : toast.button?.label ? toast.button.label : <X size={18} />}
+          </Button>
+        </header>
+        <p className={styles.message}>{toast.message}</p>
       </div>
     </div>
   );

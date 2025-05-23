@@ -2,6 +2,8 @@ import type { Dispatch } from 'react';
 import type { CssBreakPointsInterface } from '@config/interfaces/constants.interface';
 import type { CustomRouteObject } from '@config/interfaces/routes.interface';
 
+export type { CssBreakPointsInterface };
+
 interface InitialState {
   route: CustomRouteObject | Record<string, unknown>;
   title: string;

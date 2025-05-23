@@ -9,6 +9,9 @@ import App from './App';
 import './styles/base.scss';
 import './styles/components/common.module.scss';
 
+// Initialize smooth corners
+import './utils/smooth-corners';
+
 const container = document.getElementById('root');
 const root = container && createRoot(container);
 

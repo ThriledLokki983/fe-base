@@ -1,5 +1,7 @@
+export type ToastType = 'info' | 'success' | 'warning' | 'error';
+
 export default {
-  type: 'error',
+  type: 'error' as ToastType,
   title: '',
   message: '',
   active: false,

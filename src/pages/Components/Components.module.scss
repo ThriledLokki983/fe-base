@@ -12,12 +12,23 @@
   margin-bottom: var(--space-xl);
 }
 
+.sectionGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  gap: var(--space-xl);
+  margin-bottom: var(--space-2xl);
+}
+
 .section {
   margin-bottom: var(--space-2xl);
   padding: var(--space-xl);
   background: var(--color-surface-1);
   border-radius: var(--radius-lg);
   border: 1px solid var(--color-border-primary);
+
+  &.half {
+    margin-bottom: 0;
+  }
 }
 
 .sectionTitle {

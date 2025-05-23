@@ -1,7 +1,6 @@
 @use '@styles/design-tokens' as tokens;
 @use '@styles/utility/typography' as typography;
-@import '@styles/utils';
-@import '@styles/utility';
+@use '@styles/utils' as *;
 
 .button {
   @include typography.typography(body);
