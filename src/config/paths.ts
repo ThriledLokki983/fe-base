@@ -4,6 +4,7 @@
  */
 export const PATH_HOME: string = '/';
 export const PATH_COMPONENTS: string = '/components';
+export const PATH_FORM_DEMO: string = '/form-demo';
 export const PATH_PATTERNS: string = '/patterns';
 export const PATH_LOGOUT: string = '/logout';
 export const PATH_NOT_FOUND: string = '*';

@@ -1,6 +1,6 @@
-import { forwardRef, useState, type ChangeEvent } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { forwardRef, useState } from 'react';
 import { Eye, EyeOff } from 'lucide-react';
+import { TextField, Label, Input as AriaInput, FieldError, Text } from 'react-aria-components';
 import type { InputProps } from './Input.interface';
 import styles from './Input.module.scss';
 
@@ -25,32 +25,41 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     },
     ref
   ) => {
-    const [isFocused, setIsFocused] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
-    const hasValue = value && value.toString().length > 0;
-
-    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-      onChange?.(e);
-    };
-
     const inputType = type === 'password' && showPassword ? 'text' : type;
-
     const iconSize = size === 'large' ? 20 : size === 'small' ? 16 : 18;
 
+    // Handle change event to maintain compatibility with existing code
+    const handleChange = (value: string) => {
+      if (onChange) {
+        const syntheticEvent = {
+          target: {
+            value,
+            name,
+            type: inputType,
+          },
+        } as React.ChangeEvent<HTMLInputElement>;
+        onChange(syntheticEvent);
+      }
+    };
+
     return (
-      <div
+      <TextField
+        isRequired={required}
+        isDisabled={disabled}
+        isInvalid={!!error}
+        value={value?.toString() || ''}
+        onChange={handleChange}
         className={`${styles.inputWrapper} ${className || ''}`}
-        data-has-value={hasValue}
-        data-has-error={!!error}
-        data-is-focused={isFocused}
-        data-is-disabled={disabled}
         data-size={size}
+        data-has-error={!!error}
+        data-is-disabled={disabled}
       >
         {label && (
-          <label htmlFor={id} className={styles.label}>
+          <Label className={styles.label}>
             {label}
             {required && <span className={styles.required}>*</span>}
-          </label>
+          </Label>
         )}
         <div className={styles.inputContainer}>
           {Icon && (
@@ -58,18 +67,13 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
               <Icon size={iconSize} strokeWidth={1.5} />
             </span>
           )}
-          <input
-            ref={ref}
+          <AriaInput
             id={id}
             name={name}
-            type={inputType}
+            ref={ref}
             className={styles.input}
             placeholder={placeholder}
-            disabled={disabled}
-            value={value}
-            onChange={handleChange}
-            onFocus={() => setIsFocused(true)}
-            onBlur={() => setIsFocused(false)}
+            type={inputType}
             {...props}
           />
           {type === 'password' && (
@@ -86,47 +90,21 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
               )}
             </button>
           )}
-          <AnimatePresence>
-            {isFocused && (
-              <motion.div
-                className={styles.focusRing}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.2, ease: 'easeOut' }}
-              />
-            )}
-          </AnimatePresence>
         </div>
-        {(error || helperText) && (
-          <div className={styles.bottom}>
-            <AnimatePresence>
-              {error && (
-                <motion.p
-                  className={styles.error}
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.2, ease: 'easeOut' }}
-                >
-                  {error}
-                </motion.p>
-              )}
-              {!error && helperText && (
-                <motion.p
-                  className={styles.helperText}
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.2, ease: 'easeOut' }}
-                >
-                  {helperText}
-                </motion.p>
-              )}
-            </AnimatePresence>
-          </div>
-        )}
-      </div>
+        <div className={styles.bottom}>
+          {error && <FieldError className={styles.error}>{error}</FieldError>}
+          {!error && helperText && (
+            <Text slot="description" className={styles.helperText}>
+              {helperText}
+            </Text>
+          )}
+        </div>
+      </TextField>
     );
   }
 );
+
+Input.displayName = 'Input';
+
+Input.displayName = 'Input';
+export default Input;

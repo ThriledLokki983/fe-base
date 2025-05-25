@@ -1,6 +1,6 @@
 import { type RouteObject } from 'react-router-dom';
-import { createElement } from 'react';
-import { PATH_HOME, PATH_COMPONENTS, PATH_NOT_FOUND } from './paths';
+import { LayoutDashboard, Zap, FileInput } from 'lucide-react';
+import { PATH_HOME, PATH_COMPONENTS, PATH_FORM_DEMO, PATH_NOT_FOUND } from './paths';
 
 import type { CustomRouteObject } from '@config/interfaces/routes.interface';
 import Layout from '@components/layout/MainLayout';
@@ -13,11 +13,11 @@ import * as Pages from '@pages/index';
  */
 const ROUTES_ALL: RouteObject[] = [
   {
-    element: createElement(Layout),
+    element: <Layout />,
     children: [
       {
         path: PATH_HOME,
-        element: createElement(Pages.Home),
+        element: <Pages.Home />,
         index: true,
         // These custom properties help with navigation and SEO
         ...{
@@ -25,21 +25,34 @@ const ROUTES_ALL: RouteObject[] = [
           isNav: true,
           isEnd: true,
           title: 'Home',
+          icon: <LayoutDashboard size={20} strokeWidth={1.5} />,
         },
       } as CustomRouteObject,
       {
         path: PATH_COMPONENTS,
-        element: createElement(Pages.Components),
+        element: <Pages.Components />,
         ...{
           label: 'Components',
           isNav: true,
           isEnd: true,
           title: 'Components',
+          icon: <Zap size={20} strokeWidth={1.5} />,
+        },
+      } as CustomRouteObject,
+      {
+        path: PATH_FORM_DEMO,
+        element: <Pages.FormDemo />,
+        ...{
+          label: 'Form Demo',
+          isNav: true,
+          isEnd: true,
+          title: 'Form Demo',
+          icon: <FileInput size={20} strokeWidth={1.5} />,
         },
       } as CustomRouteObject,
       {
         path: PATH_NOT_FOUND,
-        element: createElement(Pages.NotFound),
+        element: <Pages.NotFound />,
         ...{
           title: 'Not found',
           isNav: false,
@@ -47,7 +60,7 @@ const ROUTES_ALL: RouteObject[] = [
       } as CustomRouteObject,
       {
         path: '*',
-        element: createElement(Pages.NotFound),
+        element: <Pages.NotFound />,
         ...{
           title: 'Not found',
           isNav: false,

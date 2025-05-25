@@ -4,7 +4,7 @@ import { debounce } from '@grrr/utils';
 
 import { PATH_NOT_FOUND } from '@config/paths';
 import { CSS_BREAKPOINTS } from '@config/constants';
-import ROUTES from '@config/routes';
+import ROUTES_ALL from '@config/routes';
 import TOAST_DEFAULTS from '@components/common/Toast/Toast.defaults';
 
 import { scrollToTop } from '@utils/utils';
@@ -65,7 +65,7 @@ function useAppState(): AppState {
   useEffect(() => {
     // Match route, or fall back to 404 | 'Not Found'.
     let foundRoute: unknown = { path: PATH_NOT_FOUND, title: 'Not Found' };
-    for (const route of ROUTES as RouteObject[]) {
+    for (const route of ROUTES_ALL as RouteObject[]) {
       if (route.children) {
         const match = route.children.find(
           (child) =>

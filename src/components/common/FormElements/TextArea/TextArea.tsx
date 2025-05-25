@@ -1,5 +1,12 @@
-import { forwardRef, useState, type ChangeEvent } from 'react';
+import { forwardRef } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import {
+  TextField,
+  Label,
+  TextArea as AriaTextArea,
+  FieldError,
+  Text,
+} from 'react-aria-components';
 import type { TextAreaProps } from './TextArea.interface';
 import styles from './TextArea.module.scss';
 
@@ -20,81 +27,85 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
       rows = 4,
       maxLength,
       showCount = false,
+      size = 'medium',
       ...props
     },
     ref
   ) => {
-    const [isFocused, setIsFocused] = useState(false);
-    const hasValue = value && value.toString().length > 0;
     const charCount = value?.toString().length || 0;
 
-    const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-      onChange?.(e);
+    // Handle change event to maintain compatibility with existing code
+    const handleChange = (newValue: string) => {
+      if (onChange) {
+        const syntheticEvent = {
+          target: {
+            value: newValue,
+            name,
+          },
+        } as React.ChangeEvent<HTMLTextAreaElement>;
+        onChange(syntheticEvent);
+      }
     };
 
     return (
-      <div
+      <TextField
+        isRequired={required}
+        isDisabled={disabled}
+        isInvalid={!!error}
+        value={value?.toString() || ''}
+        onChange={handleChange}
         className={`${styles.wrapper} ${className || ''}`}
-        data-has-value={hasValue}
+        data-size={size}
         data-has-error={!!error}
-        data-is-focused={isFocused}
         data-is-disabled={disabled}
       >
         {label && (
-          <label htmlFor={id} className={styles.label}>
+          <Label className={styles.label}>
             {label}
             {required && <span className={styles.required}>*</span>}
-          </label>
+          </Label>
         )}
         <div className={styles.textareaContainer}>
-          <textarea
+          <AriaTextArea
             ref={ref}
             id={id}
             name={name}
             className={styles.textarea}
             placeholder={placeholder}
-            disabled={disabled}
-            value={value}
-            onChange={handleChange}
-            onFocus={() => setIsFocused(true)}
-            onBlur={() => setIsFocused(false)}
             rows={rows}
             maxLength={maxLength}
             {...props}
           />
-          <AnimatePresence>
-            {isFocused && (
-              <motion.div
-                className={styles.focusRing}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.2 }}
-              />
-            )}
-          </AnimatePresence>
         </div>
         <div className={styles.bottom}>
           <AnimatePresence>
             {error && (
-              <motion.p
+              <motion.div
                 className={styles.error}
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.2 }}
               >
-                {error}
-              </motion.p>
+                <FieldError>{error}</FieldError>
+              </motion.div>
             )}
           </AnimatePresence>
-          {helperText && !error && <p className={styles.helperText}>{helperText}</p>}
+          {!error && helperText && (
+            <Text slot="description" className={styles.helperText}>
+              {helperText}
+            </Text>
+          )}
           {showCount && maxLength && (
             <p className={styles.charCount}>
               {charCount}/{maxLength}
             </p>
           )}
         </div>
-      </div>
+      </TextField>
     );
   }
 );
+
+TextArea.displayName = 'TextArea';
+export default TextArea;

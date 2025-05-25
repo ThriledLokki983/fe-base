@@ -1,4 +1,5 @@
 import type { RouteObject } from 'react-router-dom';
+import type { ReactNode } from 'react';
 
 export type CustomRouteObject = RouteObject & {
   label?: string;
@@ -6,4 +7,5 @@ export type CustomRouteObject = RouteObject & {
   isEnd?: boolean;
   isIndex?: boolean;
   title: string;
+  icon?: ReactNode;
 };

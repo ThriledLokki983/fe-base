@@ -7,6 +7,7 @@ export const Button = ({
   type = 'button',
   url,
   disabled = false,
+  error = false,
   children,
   onClick,
 }: ButtonProps) => {
@@ -14,6 +15,7 @@ export const Button = ({
     className: styles.button,
     'data-variant': variant,
     'data-size': size,
+    'data-error': error ? 'true' : undefined,
     disabled,
     onClick,
   };

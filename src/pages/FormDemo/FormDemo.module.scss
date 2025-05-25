@@ -1,0 +1,59 @@
+.container {
+  padding: var(--space-md);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section {
+  margin-bottom: var(--space-xl);
+  
+  h2 {
+    margin-bottom: var(--space-md);
+    color: var(--color-text-primary);
+    font-weight: 600;
+  }
+  
+  h3 {
+    margin-bottom: var(--space-sm);
+    color: var(--color-text-secondary);
+    font-weight: 500;
+  }
+}
+
+.componentDemo {
+  background-color: var(--color-surface-1);
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-primary);
+  margin-bottom: var(--space-lg);
+  width: 100%;
+  max-width: 600px;
+}
+
+.variations {
+  margin-top: var(--space-lg);
+}
+
+.variationGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: var(--space-md);
+  
+  > div {
+    background-color: var(--color-surface-1);
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border-primary);
+  }
+}
+
+.buttonGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  background-color: var(--color-surface-1);
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-primary);
+  margin-bottom: var(--space-lg);
+}

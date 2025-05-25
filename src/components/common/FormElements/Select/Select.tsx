@@ -1,6 +1,18 @@
-import { forwardRef, useState } from 'react';
+import { forwardRef } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
+import type { Key } from 'react-aria-components';
+import {
+  Select as AriaSelect,
+  SelectValue,
+  Button,
+  Popover,
+  ListBox,
+  ListBoxItem,
+  Label,
+  FieldError,
+  Text,
+} from 'react-aria-components';
 import type { SelectProps } from './Select.interface';
 import styles from './Select.module.scss';
 
@@ -21,88 +33,109 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
       value,
       onChange,
       size = 'medium',
-      ...props
     },
-    ref
+    _ref
   ) => {
-    const [isFocused, setIsFocused] = useState(false);
-    const hasValue = value && value.toString().length > 0;
+    // For backwards compatibility with native select
+    const handleSelectionChange = (key: Key | null) => {
+      if (onChange && key !== null) {
+        const syntheticEvent = {
+          target: {
+            value: key.toString(),
+            name,
+          },
+        } as React.ChangeEvent<HTMLSelectElement>;
+        onChange(syntheticEvent);
+      }
+    };
+
+    // Define an interface for our item structure
+    interface Item {
+      id: string;
+      textValue: string;
+    }
+
+    // Convert options to the format expected by React Aria
+    const items = options.map((option) => ({
+      id: option.value.toString(),
+      textValue: option.label,
+    }));
 
     return (
-      <div
-        className={`${styles.wrapper} ${className || ''}`}
-        data-has-value={hasValue}
-        data-has-error={!!error}
-        data-is-focused={isFocused}
-        data-is-disabled={disabled}
+      <AriaSelect
+        name={name}
+        isDisabled={disabled}
+        selectedKey={value?.toString()}
+        onSelectionChange={handleSelectionChange}
+        className={({ isOpen }) =>
+          `${styles.wrapper} ${className || ''} ${isOpen ? styles.open : ''}`
+        }
         data-size={size}
+        data-has-error={!!error}
+        data-is-disabled={disabled}
       >
         {label && (
-          <label htmlFor={id} className={styles.label}>
+          <Label className={styles.label}>
             {label}
             {required && <span className={styles.required}>*</span>}
-          </label>
+          </Label>
         )}
+
         <div className={styles.selectContainer}>
           {Icon && (
             <span className={styles.icon}>
               <Icon size={18} strokeWidth={1.5} />
             </span>
           )}
-          <select
-            ref={ref}
-            id={id}
-            name={name}
-            className={styles.select}
-            disabled={disabled}
-            value={value}
-            onChange={onChange}
-            onFocus={() => setIsFocused(true)}
-            onBlur={() => setIsFocused(false)}
-            {...props}
-          >
-            {placeholder && (
-              <option value="" disabled>
-                {placeholder}
-              </option>
-            )}
-            {options.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
-          <span className={styles.chevron}>
-            <ChevronDown size={18} strokeWidth={1.5} />
-          </span>
-          <AnimatePresence>
-            {isFocused && (
-              <motion.div
-                className={styles.focusRing}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.2 }}
-              />
-            )}
-          </AnimatePresence>
+
+          <Button className={styles.select} id={id}>
+            <SelectValue>
+              {({ selectedItem }) => {
+                const item = selectedItem as Item | null;
+                return item ? item.textValue : placeholder;
+              }}
+            </SelectValue>
+            <span className={styles.chevron}>
+              <ChevronDown size={18} strokeWidth={1.5} />
+            </span>
+          </Button>
+
+          <Popover className={styles.popover}>
+            <ListBox className={styles.listBox} items={items}>
+              {(item: Item) => (
+                <ListBoxItem id={item.id} textValue={item.textValue} className={styles.listBoxItem}>
+                  {item.textValue}
+                </ListBoxItem>
+              )}
+            </ListBox>
+          </Popover>
         </div>
+
         <div className={styles.bottom}>
           <AnimatePresence>
             {error && (
-              <motion.p
-                className={styles.error}
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-              >
-                {error}
-              </motion.p>
+              <FieldError>
+                <motion.p
+                  className={styles.error}
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                >
+                  {error}
+                </motion.p>
+              </FieldError>
             )}
           </AnimatePresence>
-          {helperText && !error && <p className={styles.helperText}>{helperText}</p>}
+          {helperText && !error && (
+            <Text slot="description" className={styles.helperText}>
+              {helperText}
+            </Text>
+          )}
         </div>
-      </div>
+      </AriaSelect>
     );
   }
 );
+
+Select.displayName = 'Select';
+export default Select;

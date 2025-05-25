@@ -1,25 +1,19 @@
 import { useCallback, useState, useEffect, useRef } from 'react';
 import styles from './Sidebar.module.scss';
-import { LayoutDashboard, Zap, ChevronDown, LogOut, Settings, User } from 'lucide-react';
+import { ChevronDown, LogOut, Settings, User } from 'lucide-react';
 
-import { PATH_HOME, PATH_COMPONENTS } from '@config/paths';
 import { NavLink } from 'react-router-dom';
+import ROUTES_ALL from '@config/routes';
+import { extractNavigationItems } from '@utils/routes.utils';
+import type { CustomRouteObject } from '@config/interfaces/routes.interface';
 
-// Menu items configuration with Lucide icons
-const menuItems = [
-  {
-    id: 'home',
-    label: 'Home',
-    icon: <LayoutDashboard size={20} strokeWidth={1.5} />,
-    path: PATH_HOME,
-  },
-  {
-    id: 'components',
-    label: 'Components',
-    icon: <Zap size={20} strokeWidth={1.5} />,
-    path: PATH_COMPONENTS,
-  },
-];
+// Extract navigation items from routes configuration
+const getNavigationItems = () => {
+  // Get the children routes from the layout route (first route)
+  const layoutRoute = ROUTES_ALL[0];
+  const childRoutes = (layoutRoute.children || []) as CustomRouteObject[];
+  return extractNavigationItems(childRoutes);
+};
 
 const userMenuItems = [
   { id: 'profile', label: 'Profile', icon: <User size={16} strokeWidth={1.5} /> },
@@ -30,6 +24,9 @@ const userMenuItems = [
 const Sidebar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+
+  // Get navigation items from routes configuration
+  const menuItems = getNavigationItems();
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
