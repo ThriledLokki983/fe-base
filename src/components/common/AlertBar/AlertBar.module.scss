@@ -68,7 +68,8 @@
 
     &:hover {
         opacity: 1;
-        background: color-mix(in srgb, var(--main-clr) 10%, transparent);
+        background: color-mix(in srgb, var(--main-clr) 1%, transparent);
+        border-radius: (--space-sm);
     }
 
     > svg {

@@ -11,7 +11,7 @@
   bottom: var(--space-md);
   right: var(--space-md);
   max-width: 450px;
-  min-width: 360px;
+  min-width: 400px;
   padding: var(--space-md);
   border-radius: var(--radius-lg);
   background: var(--main-bg);
@@ -59,6 +59,13 @@
 
     button {
         @include bare-button;
+        background-color: transparent !important;
+        color: var(--main-clr);
+        border: none;
+        box-shadow: none !important;
+        padding: var(--space-xs);
+        position: absolute;
+        inset: var(--space-sm) var(--space-sm) auto auto;
 
         &:hover {
             svg {
