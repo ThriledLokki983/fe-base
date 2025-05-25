@@ -80,8 +80,8 @@ const Sidebar = () => {
               className={styles.avatar}
             />
             <div className={styles.userInfo}>
-              <span className={styles.userName}>User Name</span>
-              <span className={styles.userEmail}>user@example.com</span>
+              <span className={styles.userName}>Gideon Nimoh</span>
+              <span className={styles.userEmail}>hello@nimoh.io</span>
             </div>
           </div>
           <ChevronDown

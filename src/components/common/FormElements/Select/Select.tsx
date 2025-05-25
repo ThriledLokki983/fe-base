@@ -34,6 +34,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
       onChange,
       size = 'medium',
     },
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     _ref
   ) => {
     // For backwards compatibility with native select

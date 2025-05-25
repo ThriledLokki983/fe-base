@@ -171,6 +171,7 @@ function useAppState(): AppState {
       hasToast,
       showError,
       hideError,
+      hasError,
       hasMessage,
       showMessage,
       hideMessage,

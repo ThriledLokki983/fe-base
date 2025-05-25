@@ -65,7 +65,7 @@ export default function Header() {
             className={styles.avatar}
           />
           <div>
-            <span className={styles.userName}>James Passaquindici</span>
+            <span className={styles.userName}>Abrantepa Kwame</span>
             <span className={styles.userMeta}>ID: 4527682</span>
           </div>
           <ChevronDown
