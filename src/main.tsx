@@ -1,7 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { AppStateContextProvider } from '@contexts/index';
+import { AppStateContextProvider } from '@contexts/AppStateContext';
 
 import App from './App';
 
