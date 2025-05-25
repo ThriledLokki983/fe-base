@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { AlertCircle, CheckCircle2, Info, XCircle, X } from 'lucide-react';
 import { useAppStateContext } from '@contexts/index';
-import type { ToastProps, URLLocation } from './Toast.interface';
 import { Button } from '@components/common/index';
 import styles from './Toast.module.scss';
 
@@ -17,7 +16,7 @@ const MESSAGE_TIMEOUT = 2000;
 
 let TIMEOUT: number | null = null;
 
-const Toast: React.FC<ToastProps> = ({ type, title, message, active, onClose }) => {
+const Toast = () => {
   const { toast, hideToast } = useAppStateContext();
 
   const hide = () => hideToast();
@@ -35,7 +34,7 @@ const Toast: React.FC<ToastProps> = ({ type, title, message, active, onClose }) 
    */
   const clickHandler = () => {
     if (toast.button?.url) {
-      window.location = toast.button.url as URLLocation;
+      window.location.href = toast.button.url as string;
     } else if (toast.reload) {
       window.location.reload();
     } else {
@@ -46,13 +45,13 @@ const Toast: React.FC<ToastProps> = ({ type, title, message, active, onClose }) 
   return (
     <div
       className={styles.toast}
-      data-type={type}
+      data-type={toast.type}
       role="alert"
       aria-live="polite"
       aria-hidden={!toast.active}
       onAnimationEnd={clickHandler}
     >
-      <div className={styles.icon}>{iconMap[type]}</div>
+      <div className={styles.icon}>{iconMap[toast.type as keyof typeof iconMap]}</div>
       <div className={styles.content}>
         <header className={styles.header}>
           <h3 className={styles.title}>{toast.title || `Request failed`}</h3>
@@ -60,7 +59,7 @@ const Toast: React.FC<ToastProps> = ({ type, title, message, active, onClose }) 
             type="button"
             // className={styles.closeButton}
             url={toast.button?.url}
-            onClick={onClose}
+            onClick={clickHandler}
             aria-label="Close notification"
             data-has-label={toast.reload || !!toast.button?.label}
           >

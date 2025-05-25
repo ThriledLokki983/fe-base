@@ -171,8 +171,14 @@ full-rebuild: clean rebuild start-dev
 
 deploy-prod: build-prod-image start-prod
 	@echo "Production image built and deployed."
-	
-setup: generate-lockfile
+
+# Add this before your setup target
+check-docker-auth:
+	@echo "Checking Docker authentication..."
+	@docker info > /dev/null 2>&1 || (echo "Docker is not running or not authenticated. Please run 'docker login' first." && exit 1)
+
+# Setup target
+setup: check-docker-auth generate-lockfile
 	@echo "Setting up the project for first time use..."
 	@echo "Generating package-lock.json..."
 	make generate-lockfile

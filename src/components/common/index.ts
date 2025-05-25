@@ -7,3 +7,7 @@ export { default as AlertBar } from './AlertBar/AlertBar';
 export { default as Icon } from './Icon/Icon';
 export { default as SkipLinks } from './SkipLinks/SkipLinks';
 export { default as FetchLoader } from './FetchLoader/FetchLoader';
+
+export { Input, TextArea, Select, Checkbox, Toggle } from './FormElements';
+
+export type { InputProps, TextAreaProps, SelectProps, SelectOption } from './FormElements';

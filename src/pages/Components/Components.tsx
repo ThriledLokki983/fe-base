@@ -1,12 +1,23 @@
 import { useState } from 'react';
-import { Button, Toast, AlertBar, FetchLoader } from '@components/common';
+import type { ChangeEvent } from 'react';
+import { User, Mail, Lock, Search, Globe, Palette } from 'lucide-react';
+import {
+  Button,
+  AlertBar,
+  FetchLoader,
+  Input,
+  TextArea,
+  Select,
+  Checkbox,
+  Toggle,
+} from '@components/common';
+import { useAppStateContext } from '@contexts/index';
 import styles from './Components.module.scss';
 
 type AlertTypes = 'notice' | 'success' | 'warning' | 'error';
 
 const Components = () => {
-  const [toastType, setToastType] = useState<'info' | 'success' | 'warning' | 'error'>('info');
-  const [showToast, setShowToast] = useState(false);
+  const { showToast } = useAppStateContext();
   const [showFetchLoader, setShowFetchLoader] = useState(false);
   const [showAlerts, setShowAlerts] = useState<Record<AlertTypes, boolean>>({
     notice: true,
@@ -14,10 +25,39 @@ const Components = () => {
     warning: true,
     error: true,
   });
+  const [checkboxStates, setCheckboxStates] = useState({
+    basic: false,
+    indeterminate: false,
+    disabled: true,
+  });
+  const [toggleStates, setToggleStates] = useState({
+    small: false,
+    medium: false,
+    large: false,
+    disabled: true,
+  });
 
   const handleShowToast = (type: 'info' | 'success' | 'warning' | 'error') => {
-    setToastType(type);
-    setShowToast(true);
+    showToast({
+      type,
+      title:
+        type === 'info'
+          ? 'Just so you know'
+          : type === 'success'
+            ? "You're all set"
+            : type === 'warning'
+              ? 'Take a quick look'
+              : 'Something went wrong',
+      message:
+        type === 'info'
+          ? 'This is a general update with useful info.'
+          : type === 'success'
+            ? 'Everything went through successfully.'
+            : type === 'warning'
+              ? 'Something might need your attention.'
+              : 'Please try again in a moment.',
+      active: true,
+    });
   };
 
   const handleHideAlert = (type: AlertTypes) => {
@@ -30,6 +70,16 @@ const Components = () => {
       setShowFetchLoader(false);
     }, 3000);
   };
+
+  const handleCheckboxChange =
+    (field: keyof typeof checkboxStates) => (e: ChangeEvent<HTMLInputElement>) => {
+      setCheckboxStates((prev) => ({ ...prev, [field]: e.target.checked }));
+    };
+
+  const handleToggleChange =
+    (field: keyof typeof toggleStates) => (e: ChangeEvent<HTMLInputElement>) => {
+      setToggleStates((prev) => ({ ...prev, [field]: e.target.checked }));
+    };
 
   return (
     <div className={styles.container}>
@@ -121,32 +171,6 @@ const Components = () => {
             Show Error Toast
           </Button>
         </div>
-
-        {showToast && (
-          <Toast
-            type={toastType}
-            title={
-              toastType === 'info'
-                ? 'Just so you know'
-                : toastType === 'success'
-                  ? "You're all set"
-                  : toastType === 'warning'
-                    ? 'Take a quick look'
-                    : 'Something went wrong'
-            }
-            message={
-              toastType === 'info'
-                ? 'This is a general update with useful info.'
-                : toastType === 'success'
-                  ? 'Everything went through successfully.'
-                  : toastType === 'warning'
-                    ? 'Something might need your attention.'
-                    : 'Please try again in a moment.'
-            }
-            active={showToast}
-            onClose={() => setShowToast(false)}
-          />
-        )}
       </section>
 
       {/* Primary and Secondary Buttons */}
@@ -273,6 +297,227 @@ const Components = () => {
           <Button variant="link" disabled>
             Disabled Link
           </Button>
+        </div>
+      </section>
+
+      {/* Form Elements */}
+      <section className={styles.section}>
+        <h2 className={styles.sectionTitle}>Form Elements</h2>
+        <p className={styles.description}>
+          Form elements are designed to be consistent, accessible, and user-friendly. They include
+          inputs, textareas, and select dropdowns with support for labels, icons, validation states,
+          and helpful messages.
+        </p>
+
+        <div className={styles.formGrid}>
+          {/* Text Inputs */}
+          <div className={styles.formSection}>
+            <h3 className={styles.subSectionTitle}>Text Inputs</h3>
+            <div className={styles.formElements}>
+              <Input
+                label="Username"
+                placeholder="Enter your username"
+                icon={User}
+                helperText="Choose a unique username"
+              />
+              <Input
+                label="Password"
+                type="password"
+                placeholder="Enter your password"
+                icon={Lock}
+                required
+              />
+              <Input
+                label="Email"
+                type="email"
+                placeholder="Enter your email"
+                icon={Mail}
+                error="Please enter a valid email address"
+              />
+              <Input label="Search" placeholder="Search anything..." icon={Search} disabled />
+            </div>
+          </div>
+
+          {/* TextAreas */}
+          <div className={styles.formSection}>
+            <h3 className={styles.subSectionTitle}>Text Areas</h3>
+            <div className={styles.formElements}>
+              <TextArea
+                label="Bio"
+                placeholder="Tell us about yourself"
+                helperText="Maximum 500 characters"
+                maxLength={500}
+                showCount
+              />
+              <TextArea
+                label="Feedback"
+                placeholder="Share your thoughts"
+                error="This field is required"
+              />
+            </div>
+          </div>
+
+          {/* Select Dropdowns */}
+          <div className={styles.formSection}>
+            <h3 className={styles.subSectionTitle}>Select Dropdowns</h3>
+            <div className={styles.formElements}>
+              <Select
+                label="Country"
+                placeholder="Select your country"
+                icon={Globe}
+                options={[
+                  { value: 'us', label: 'United States' },
+                  { value: 'uk', label: 'United Kingdom' },
+                  { value: 'ca', label: 'Canada' },
+                  { value: 'au', label: 'Australia' },
+                ]}
+              />
+              <Select
+                label="Theme"
+                placeholder="Choose theme"
+                icon={Palette}
+                error="Please select a theme"
+                options={[
+                  { value: 'light', label: 'Light Mode' },
+                  { value: 'dark', label: 'Dark Mode' },
+                  { value: 'system', label: 'System Default' },
+                ]}
+              />
+              <Select
+                label="Size"
+                placeholder="Select size"
+                size="small"
+                options={[
+                  { value: 'sm', label: 'Small' },
+                  { value: 'md', label: 'Medium' },
+                  { value: 'lg', label: 'Large' },
+                ]}
+              />
+            </div>
+          </div>
+
+          {/* Checkboxes and Toggles */}
+          <div className={styles.formSection}>
+            <h3 className={styles.subSectionTitle}>Checkboxes and Toggles</h3>
+            <div className={styles.formElements}>
+              <div className={styles.formGroup}>
+                <h4 className={styles.subSubSectionTitle}>Checkboxes</h4>
+                <div className={styles.formControls}>
+                  <Checkbox
+                    label="Basic checkbox"
+                    checked={checkboxStates.basic}
+                    onChange={handleCheckboxChange('basic')}
+                  />
+                  <Checkbox
+                    label="Indeterminate checkbox"
+                    indeterminate
+                    checked={checkboxStates.indeterminate}
+                    onChange={handleCheckboxChange('indeterminate')}
+                    helperText="This checkbox has an indeterminate state"
+                  />
+                  <Checkbox
+                    label="Disabled checkbox"
+                    checked={checkboxStates.disabled}
+                    disabled
+                    helperText="This checkbox cannot be changed"
+                  />
+                  <Checkbox label="Error checkbox" error="Something went wrong" />
+                </div>
+              </div>
+
+              <div className={styles.formGroup}>
+                <h4 className={styles.subSubSectionTitle}>Toggles</h4>
+                <div className={styles.formControls}>
+                  <Toggle
+                    label="Small toggle"
+                    size="small"
+                    checked={toggleStates.small}
+                    onChange={handleToggleChange('small')}
+                  />
+                  <Toggle
+                    label="Medium toggle"
+                    checked={toggleStates.medium}
+                    onChange={handleToggleChange('medium')}
+                    helperText="This is the default size"
+                  />
+                  <Toggle
+                    label="Large toggle"
+                    size="large"
+                    checked={toggleStates.large}
+                    onChange={handleToggleChange('large')}
+                  />
+                  <Toggle
+                    label="Disabled toggle"
+                    checked={toggleStates.disabled}
+                    disabled
+                    helperText="This toggle cannot be changed"
+                  />
+                  <Toggle label="Error toggle" error="Something went wrong" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className={styles.section}>
+        <h2>Form Controls</h2>
+        <div className={styles.formGrid}>
+          <div className={styles.formGroup}>
+            <h3>Checkboxes</h3>
+            <div className={styles.formControls}>
+              <Checkbox
+                label="Basic checkbox"
+                checked={checkboxStates.basic}
+                onChange={handleCheckboxChange('basic')}
+              />
+              <Checkbox
+                label="Indeterminate checkbox"
+                indeterminate
+                checked={checkboxStates.indeterminate}
+                onChange={handleCheckboxChange('indeterminate')}
+                helperText="This checkbox has an indeterminate state"
+              />
+              <Checkbox
+                label="Disabled checkbox"
+                checked={checkboxStates.disabled}
+                disabled
+                helperText="This checkbox cannot be changed"
+              />
+              <Checkbox label="Error checkbox" error="Something went wrong" />
+            </div>
+          </div>
+
+          <div className={styles.formGroup}>
+            <h3>Toggles</h3>
+            <div className={styles.formControls}>
+              <Toggle
+                label="Small toggle"
+                size="small"
+                checked={toggleStates.small}
+                onChange={handleToggleChange('small')}
+              />
+              <Toggle
+                label="Medium toggle"
+                checked={toggleStates.medium}
+                onChange={handleToggleChange('medium')}
+                helperText="This is the default size"
+              />
+              <Toggle
+                label="Large toggle"
+                size="large"
+                checked={toggleStates.large}
+                onChange={handleToggleChange('large')}
+              />
+              <Toggle
+                label="Disabled toggle"
+                checked={toggleStates.disabled}
+                disabled
+                helperText="This toggle cannot be changed"
+              />
+              <Toggle label="Error toggle" error="Something went wrong" />
+            </div>
+          </div>
         </div>
       </section>
     </div>

@@ -1,0 +1,122 @@
+@use '../../../../styles/utils' as *;
+
+.wrapper {
+  --focus-ring-color: var(--color-primary-light);
+  --error-ring-color: var(--color-error-light);
+  
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  width: 100%;
+  position: relative;
+
+  &[data-has-error="true"] {
+    --focus-ring-color: var(--error-ring-color);
+    
+    .textarea {
+      border-color: var(--color-error);
+    }
+  }
+
+  &[data-is-focused="true"] {
+    .textarea {
+      border-color: var(--color-primary);
+    }
+  }
+
+  &[data-is-disabled="true"] {
+    opacity: 0.7;
+    cursor: not-allowed;
+
+    .textarea {
+      background-color: var(--color-surface-2);
+      cursor: not-allowed;
+    }
+  }
+
+  &[data-size="small"] {
+    font-size: 0.875rem;
+  }
+
+  &[data-size="large"] {
+    font-size: 1.125rem;
+  }
+}
+
+.label {
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.required {
+  color: var(--color-error);
+  margin-left: var(--space-3xs);
+}
+
+.textareaContainer {
+  position: relative;
+  width: 100%;
+}
+
+.textarea {
+  width: 100%;
+  min-height: 100px;
+  padding: var(--space-sm);
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface-1);
+  color: var(--color-text-primary);
+  font-size: inherit;
+  font-family: inherit;
+  resize: vertical;
+  transition: all 0.2s ease;
+  line-height: 1.5;
+
+  &::placeholder {
+    color: var(--color-text-tertiary);
+  }
+
+  &:hover:not(:disabled) {
+    border-color: var(--color-border-hover);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: var(--color-primary);
+  }
+}
+
+.focusRing {
+  position: absolute;
+  inset: -3px;
+  border-radius: calc(var(--radius-sm) + 3px);
+  background-color: var(--focus-ring-color);
+  opacity: 0.12;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.bottom {
+  min-height: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.error {
+  color: var(--color-error);
+  font-size: 0.875rem;
+}
+
+.helperText {
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+}
+
+.charCount {
+  color: var(--color-text-tertiary);
+  font-size: 0.875rem;
+  margin-left: auto;
+}
