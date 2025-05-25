@@ -14,7 +14,7 @@ interface Environment {
 const env: Environment = {
   NODE_ENV: (import.meta.env.VITE_NODE_ENV as Environment['NODE_ENV']) || 'development',
   PORT: Number(import.meta.env.VITE_PORT || 3000),
-  API_URL: import.meta.env.VITE_API_URL as string || 'http://localhost:8080/api',
+  API_URL: (import.meta.env.VITE_API_URL as string) || 'http://localhost:8080/api',
 };
 
 /**

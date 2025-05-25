@@ -25,6 +25,6 @@ export default defineConfig({
       '@pages': path.resolve(path.dirname(fileURLToPath(import.meta.url)), './src/pages'),
       '@hooks': path.resolve(path.dirname(fileURLToPath(import.meta.url)), './src/hooks'),
       '@config': path.resolve(path.dirname(fileURLToPath(import.meta.url)), './src/config'),
-    }
+    },
   },
 });
