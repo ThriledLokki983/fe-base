@@ -28,6 +28,11 @@ export interface SelectProps extends Omit<ComponentPropsWithoutRef<'select'>, 's
   icon?: LucideIcon;
 
   /**
+   * Placeholder text for the select
+   */
+  placeholder?: string;
+
+  /**
    * Options to display in the select
    */
   options: SelectOption[];

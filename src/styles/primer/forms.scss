@@ -1,4 +1,4 @@
-@import '../utils';
+@use '../utils' as *;
 
 input:not([type]),
 input[type="search"],

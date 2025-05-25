@@ -1,4 +1,4 @@
-@import '../../../styles/utils';
+@use '../../../styles/utils' as *;
 
 .root {
     position: fixed; top: var(--space-sm); left: var(--space-sm);
