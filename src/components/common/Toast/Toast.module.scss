@@ -1,194 +1,192 @@
 @use '../../../styles/utils' as *;
 
 .toast {
-    --bg-clr: var(--color-surface-1);
-    --main-clr: var(--color-text-primary);
-    --main-bg: color-mix(in srgb, var(--bg-clr) 80%, transparent);
-    --border-clr: var(--color-border-primary);
-    --card-shadow: -1px 2px 4px 1px color-mix(in srgb, var(--main-clr) 15%, transparent);
-
   position: fixed;
-  bottom: var(--space-md);
-  right: var(--space-md);
-  max-width: 450px;
-  min-width: 400px;
-  padding: var(--space-md);
-  border-radius: var(--radius-lg);
-  background: var(--main-bg);
-  border: 1px solid var(--border-clr);
-  box-shadow: var(--card-shadow);
+  top: var(--space-lg);
+  right: var(--space-lg);
+  z-index: z('toast');
   display: flex;
   align-items: flex-start;
-  gap: var(--space-md);
-  transform: translateX(0);
-  opacity: 1;
-  visibility: visible;
-  z-index: z(toast);
-  display: flex; align-items: center; justify-content: space-between;
-  color: var(--main-clr);
-  will-change: transform, opacity;
-
-  &[data-state="entering"] {
-    animation: slideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  gap: var(--space-sm);
+  min-width: 320px;
+  max-width: 480px;
+  padding: var(--space-md);
+  border-radius: 12px; // Cosmic design rounded corners
+  box-shadow: 
+    0 10px 25px -5px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  
+  // Focus management
+  &:focus-within {
+    outline: 2px solid var(--color-brand-primary);
+    outline-offset: 2px;
   }
 
-  &[data-state="exiting"] {
-    animation: slideOut 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-  }
-
-  &[data-state="entered"] {
-    transform: translateX(0);
-    opacity: 1;
-  }
-
-  .icon {
-    color: var(--main-clr);
-
-    > svg {
-      height: var(--space-lg);
-      width: var(--space-lg);
-    }
-  }
-
-  .content {
-    header {
-        display: flex; justify-content: space-between; align-items: center;
-        width: 100%;
-        margin-bottom: var(--space-xs);
+  // Type variants with cosmic theme backgrounds
+  &.info {
+    background: linear-gradient(135deg, var(--color-info-light) 0%, rgba(255, 255, 255, 0.95) 100%);
+    border-left: 4px solid var(--color-info);
+    border-color: rgba(0, 102, 204, 0.2);
+    
+    .icon {
+      color: var(--color-info-dark);
     }
 
-    button {
-        @include bare-button;
-        background-color: transparent !important;
-        color: var(--main-clr);
-        border: none;
-        box-shadow: none !important;
-        padding: var(--space-xs);
-        position: absolute;
-        inset: var(--space-sm) var(--space-sm) auto auto;
+    box-shadow: 
+      0 10px 25px -5px rgba(0, 102, 204, 0.1),
+      0 4px 6px -2px rgba(0, 102, 204, 0.05);
+  }
 
-        &:hover {
-            svg {
-                animation: rotate 0.2s ease-in-out;
-            }
-        }
+  &.success {
+    background: linear-gradient(135deg, var(--color-success-light) 0%, rgba(255, 255, 255, 0.95) 100%);
+    border-left: 4px solid var(--color-success);
+    border-color: rgba(23, 93, 45, 0.2);
+    
+    .icon {
+      color: var(--color-success-dark);
     }
+
+    box-shadow: 
+      0 10px 25px -5px rgba(23, 93, 45, 0.1),
+      0 4px 6px -2px rgba(23, 93, 45, 0.05);
   }
 
-  &[data-state="exited"] {
-    visibility: hidden;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    &[data-state] {
-      animation: none;
-      transform: translateX(0);
-      opacity: 1;
-      
-      &[data-state="exited"] {
-        display: none;
-      }
+  &.warning {
+    background: linear-gradient(135deg, var(--color-warning-light) 0%, rgba(255, 255, 255, 0.95) 100%);
+    border-left: 4px solid var(--color-warning);
+    border-color: rgba(235, 140, 0, 0.2);
+    
+    .icon {
+      color: var(--color-warning-dark);
     }
+
+    box-shadow: 
+      0 10px 25px -5px rgba(235, 140, 0, 0.1),
+      0 4px 6px -2px rgba(235, 140, 0, 0.05);
   }
 
-  &[data-type="info"] {
-    --bg-clr: var(--color-info-light);
-    --border-clr: var(--color-info);
-    --main-clr: var(--color-info);
+  &.error {
+    background: linear-gradient(135deg, var(--color-error-light) 0%, rgba(255, 255, 255, 0.95) 100%);
+    border-left: 4px solid var(--color-error);
+    border-color: rgba(197, 42, 26, 0.2);
+    
+    .icon {
+      color: var(--color-error-dark);
+    }
+
+    box-shadow: 
+      0 10px 25px -5px rgba(197, 42, 26, 0.1),
+      0 4px 6px -2px rgba(197, 42, 26, 0.05);
   }
 
-  &[data-type="success"] {
-    --bg-clr: var(--color-success-light);
-    --border-clr: var(--color-success);
-    --main-clr: var(--color-success);
+  // Remove CSS animation since Framer Motion handles entry/exit
+  // animation: toastGentleEntry 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  
+  // Premium glass effect
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0.05) 50%,
+      rgba(255, 255, 255, 0.02) 100%
+    );
+    border-radius: inherit;
+    pointer-events: none;
   }
 
-  &[data-type="warning"] {
-    --bg-clr: var(--color-warning-light);
-    --border-clr: var(--color-warning);
-    --main-clr: var(--color-warning);
-  }
-
-  &[data-type="error"] {
-    --bg-clr: var(--color-error-light);
-    --border-clr: var(--color-error);
-    --main-clr: var(--color-error);
+  // Enhanced hover states for premium feel
+  &:hover {
+    transform: translateY(-3px) scale(1.02);
+    transition: transform 0.2s ease-out; // Only transition transform on hover
+    box-shadow: 
+      0 20px 40px -10px rgba(0, 0, 0, 0.2),
+      0 10px 20px -8px rgba(0, 0, 0, 0.15);
   }
 }
 
 .content {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
   flex: 1;
 }
 
-.title {
-  margin: 0;
-  font-size: 0.975rem;
-  font-weight: 600;
-  color: var(--main-clr);
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px; // Align with text baseline
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
 }
 
 .message {
-  margin: 0;
-  font-size: 0.9125rem;
-  color: var(--main-clr);
-  line-height: 1.4;
-  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-text-primary);
+  word-break: break-word;
+  font-weight: 500; // Slightly bolder for better readability
 }
 
 .closeButton {
-  padding: var(--space-xs);
-  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
   border: none;
-  border-radius: var(--radius-sm);
-  color: var(--main-clr);
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+  color: var(--color-text-secondary);
   cursor: pointer;
-  transition: all 0.2s ease;
-  position: absolute;
-  right: 10px;
-  top: 10px;
-
-  > svg {
-    color: var(--main-clr);
-  }
+  transition: all 0.2s ease-out;
+  backdrop-filter: blur(4px);
 
   &:hover {
-    background: var(--color-bg-secondary);
+    background: rgba(255, 255, 255, 0.95);
     color: var(--color-text-primary);
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
 
   &:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px var(--color-brand-primary);
+    outline: 2px solid var(--color-brand-primary);
+    outline-offset: 2px;
+    background: rgba(255, 255, 255, 0.95);
+  }
+
+  &:active {
+    transform: scale(0.95);
   }
 }
 
-@keyframes rotate {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes slideIn {
-  0% {
-    transform: translateX(120%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-@keyframes slideOut {
-  0% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(120%);
-    opacity: 0;
+// Responsive adjustments with cosmic spacing
+@media (max-width: 640px) {
+  .toast {
+    left: 16px; // --space-md equivalent
+    right: 16px;
+    top: 16px;
+    min-width: auto;
+    max-width: none;
+    padding: 16px;
+    border-radius: 12px;
+    
+    .message {
+      font-size: 15px; // Slightly larger on mobile for readability
+    }
+    
+    .closeButton {
+      width: 32px;
+      height: 32px;
+    }
   }
 }

@@ -35,6 +35,16 @@
   margin-bottom: var(--space-sm);
 }
 
+.subsectionTitle {
+  @include typography(h3);
+  color: var(--color-text-primary);
+  margin: var(--space-lg) 0 var(--space-md);
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
 .description {
   color: var(--color-text-secondary);
   margin-bottom: var(--space-lg);
@@ -86,4 +96,19 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
+}
+
+.smallText {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.loaderDemo {
+  position: relative;
+  min-height: 200px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
 }

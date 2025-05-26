@@ -1,18 +1,12 @@
 import type { ComponentType } from 'react';
 import { useParams } from 'react-router-dom';
 
-import {
-  //   UserContextProvider,
-  AppStateContextProvider,
-} from '@contexts/providers';
+// No longer need the old context providers since we're using Zustand
 
 function withAppHocs<T>(ChildComponent: React.ComponentType<T>) {
   return (props: React.PropsWithChildren<T>) => (
-    <AppStateContextProvider>
-      {/* <UserContextProvider> */}
-      <ChildComponent {...props} />
-      {/* </UserContextProvider> */}
-    </AppStateContextProvider>
+    // No more context providers needed - Zustand is global
+    <ChildComponent {...props} />
   );
 }
 

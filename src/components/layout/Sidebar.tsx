@@ -1,15 +1,15 @@
 import { useCallback, useState, useEffect, useRef } from 'react';
-import styles from './Sidebar.module.scss';
-import { ChevronDown, LogOut, Settings, User } from 'lucide-react';
-
 import { NavLink } from 'react-router-dom';
+
+import { ChevronDown, LogOut, Settings, User } from 'lucide-react';
 import ROUTES_ALL from '@config/routes';
 import { extractNavigationItems } from '@utils/routes.utils';
 import type { CustomRouteObject } from '@config/interfaces/routes.interface';
 
+import styles from './Sidebar.module.scss';
+
 // Extract navigation items from routes configuration
 const getNavigationItems = () => {
-  // Get the children routes from the layout route (first route)
   const layoutRoute = ROUTES_ALL[0];
   const childRoutes = (layoutRoute.children || []) as CustomRouteObject[];
   return extractNavigationItems(childRoutes);
@@ -39,8 +39,17 @@ const Sidebar = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  const handleKeyDown = useCallback((event: React.KeyboardEvent) => {
+    if (event.key === 'Escape') {
+      setIsMenuOpen(false);
+    }
+  }, []);
+
+  const toggleMenu = useCallback(() => {
+    setIsMenuOpen((prev) => !prev);
+  }, []);
+
   const handleUserMenuClick = useCallback((id: string) => {
-    // Handle user menu item click
     console.log('User menu clicked:', id);
     setIsMenuOpen(false);
   }, []);
@@ -51,12 +60,18 @@ const Sidebar = () => {
         <h1>Your Logo</h1>
       </div>
 
-      <nav className={styles.navigation}>
-        <ul className={styles.menu}>
+      <nav id="navigation" className={styles.navigation} aria-label="Main navigation">
+        <ul className={styles.menu} role="list">
           {menuItems.map((item) => (
-            <li key={item.id} className={styles.menuItem}>
-              <NavLink to={item.path} className={styles.menuButton}>
-                <span className={styles.icon}>{item.icon}</span>
+            <li key={item.id} className={styles.menuItem} role="listitem">
+              <NavLink
+                to={item.path}
+                className={styles.menuButton}
+                aria-label={`Navigate to ${item.label}`}
+              >
+                <span className={styles.icon} aria-hidden="true">
+                  {item.icon}
+                </span>
                 <span className={styles.label}>{item.label}</span>
               </NavLink>
             </li>
@@ -67,11 +82,13 @@ const Sidebar = () => {
       <div className={styles.userProfile} ref={menuRef}>
         <div
           className={styles.profileButton}
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          onClick={toggleMenu}
+          onKeyDown={handleKeyDown}
           role="button"
           tabIndex={0}
           aria-expanded={isMenuOpen}
           aria-haspopup="true"
+          aria-label="User menu"
         >
           <div className={styles.avatarSection}>
             <img

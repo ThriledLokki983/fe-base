@@ -1,7 +1,6 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { AppStateContextProvider } from '@contexts/AppStateContext';
 
 import App from './App';
 
@@ -18,9 +17,7 @@ const root = container && createRoot(container);
 root?.render(
   <StrictMode>
     <Router>
-      <AppStateContextProvider>
-        <App />
-      </AppStateContextProvider>
+      <App />
     </Router>
   </StrictMode>
 );

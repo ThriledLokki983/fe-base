@@ -1,10 +1,18 @@
 import { type RouteObject } from 'react-router-dom';
+import { lazy } from 'react';
+
 import { LayoutDashboard, Zap, FileInput } from 'lucide-react';
 import { PATH_HOME, PATH_COMPONENTS, PATH_FORM_DEMO, PATH_NOT_FOUND } from './paths';
 
 import type { CustomRouteObject } from '@config/interfaces/routes.interface';
 import Layout from '@components/layout/MainLayout';
-import * as Pages from '@pages/index';
+import LazyWrapper from '@components/common/LazyWrapper';
+
+// Lazy load page components for better performance
+const Home = lazy(() => import('@pages/Home/Home'));
+const Components = lazy(() => import('@pages/Components'));
+const FormDemo = lazy(() => import('@pages/FormDemo'));
+const NotFound = lazy(() => import('@pages/NotFound/NotFound'));
 
 /**
  * Core routes configuration following React Router best practices.
@@ -17,7 +25,11 @@ const ROUTES_ALL: RouteObject[] = [
     children: [
       {
         path: PATH_HOME,
-        element: <Pages.Home />,
+        element: (
+          <LazyWrapper>
+            <Home />
+          </LazyWrapper>
+        ),
         index: true,
         // These custom properties help with navigation and SEO
         ...{
@@ -30,7 +42,11 @@ const ROUTES_ALL: RouteObject[] = [
       } as CustomRouteObject,
       {
         path: PATH_COMPONENTS,
-        element: <Pages.Components />,
+        element: (
+          <LazyWrapper>
+            <Components />
+          </LazyWrapper>
+        ),
         ...{
           label: 'Components',
           isNav: true,
@@ -41,7 +57,11 @@ const ROUTES_ALL: RouteObject[] = [
       } as CustomRouteObject,
       {
         path: PATH_FORM_DEMO,
-        element: <Pages.FormDemo />,
+        element: (
+          <LazyWrapper>
+            <FormDemo />
+          </LazyWrapper>
+        ),
         ...{
           label: 'Form Demo',
           isNav: true,
@@ -52,7 +72,11 @@ const ROUTES_ALL: RouteObject[] = [
       } as CustomRouteObject,
       {
         path: PATH_NOT_FOUND,
-        element: <Pages.NotFound />,
+        element: (
+          <LazyWrapper>
+            <NotFound />
+          </LazyWrapper>
+        ),
         ...{
           title: 'Not found',
           isNav: false,
@@ -60,7 +84,11 @@ const ROUTES_ALL: RouteObject[] = [
       } as CustomRouteObject,
       {
         path: '*',
-        element: <Pages.NotFound />,
+        element: (
+          <LazyWrapper>
+            <NotFound />
+          </LazyWrapper>
+        ),
         ...{
           title: 'Not found',
           isNav: false,

@@ -15,6 +15,46 @@ export default defineConfig(({ mode }) => {
     // Base URL for the application
     plugins: [react(), svgr()],
 
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            // Core React dependencies
+            vendor: ['react', 'react-dom'],
+            // Routing and navigation
+            router: ['react-router-dom'],
+            // UI components and icons
+            ui: ['lucide-react', 'react-aria-components'],
+            // State management and utilities
+            state: ['@tanstack/react-query'],
+            // Animation library
+            animation: ['framer-motion'],
+            // Utils and helpers
+            utils: ['@grrr/utils', 'dompurify'],
+          },
+          // Better asset naming for caching
+          assetFileNames: (assetInfo) => {
+            const fileName = assetInfo.name || 'asset';
+            if (/\.(png|jpe?g|svg|gif|tiff|bmp|ico)$/i.test(fileName)) {
+              return `assets/images/[name]-[hash][extname]`;
+            }
+            if (/\.(woff2?|eot|ttf|otf)$/i.test(fileName)) {
+              return `assets/fonts/[name]-[hash][extname]`;
+            }
+            return `assets/[name]-[hash][extname]`;
+          },
+          chunkFileNames: 'assets/[name]-[hash].js',
+          entryFileNames: 'assets/[name]-[hash].js',
+        },
+      },
+      // Optimize build performance
+      target: 'esnext',
+      minify: 'esbuild',
+      sourcemap: false, // Disable in production for smaller builds
+      reportCompressedSize: false, // Skip compression reporting for faster builds
+      chunkSizeWarningLimit: 1000,
+    },
+
     // Enable CSS modules
     css: {
       postcss: {
@@ -46,6 +86,7 @@ export default defineConfig(({ mode }) => {
         '@config': path.resolve(path.dirname(fileURLToPath(import.meta.url)), './src/config'),
         '@contexts': path.resolve(path.dirname(fileURLToPath(import.meta.url)), './src/contexts'),
         '@hocs': path.resolve(path.dirname(fileURLToPath(import.meta.url)), './src/hocs'),
+        '@stores': path.resolve(path.dirname(fileURLToPath(import.meta.url)), './src/stores'),
         '@styles': path.resolve(path.dirname(fileURLToPath(import.meta.url)), './src/styles'),
         '@assets': path.resolve(path.dirname(fileURLToPath(import.meta.url)), './src/assets'),
       },

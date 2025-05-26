@@ -1,15 +1,15 @@
 import { useEffect } from 'react';
 import { PATH_HOME } from '@config/paths';
 import { Button } from '@components/common';
-import { useAppStateContext } from '@contexts/index';
+import { useAppStore } from '@stores/appStore';
 import styles from './NotFound.module.scss';
 
 const NotFound = () => {
-  const { stateDispatch, stateActions } = useAppStateContext();
+  const { setTitle } = useAppStore();
 
   useEffect(() => {
-    stateDispatch(stateActions.updatePageTitle('Page not found'));
-  }, [stateActions, stateDispatch]);
+    setTitle('Page not found');
+  }, [setTitle]);
 
   return (
     <article className={styles.root}>

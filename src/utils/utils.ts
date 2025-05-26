@@ -4,7 +4,7 @@ import React from 'react';
 import DOMPurify from 'dompurify';
 import { parseJson } from '@grrr/utils';
 
-import type { CssBreakPointsInterface } from '@hooks/interfaces';
+import type { CssBreakPointsInterface } from '@config/interfaces';
 
 /**
  * Convert to integer.

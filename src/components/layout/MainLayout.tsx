@@ -3,7 +3,8 @@ import { Outlet } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import Header from './Header';
 import styles from './MainLayout.module.scss';
-import { FetchLoader, SkipLinks, Toast } from '@components/common/index';
+import { SkipLinks, Toast } from '@components/common/index';
+import { FocusManager } from '@hooks/useFocusManagement';
 
 interface LayoutProps {
   children?: ReactNode | ReactElement | ReactElement[];
@@ -11,19 +12,26 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <section className={styles.layout}>
-      <Sidebar />
-      <div className={styles.content}>
-        <Header />
-        <main className={styles.main}>
-          <Outlet />
-          {children}
-        </main>
+    <FocusManager>
+      <div className={styles.layout}>
+        <SkipLinks />
+        <Sidebar />
+        <div className={styles.content}>
+          <Header />
+          <main
+            id="main-content"
+            className={styles.main}
+            role="main"
+            aria-label="Main content"
+            tabIndex={-1}
+          >
+            <Outlet />
+            {children}
+          </main>
+        </div>
+        <Toast />
       </div>
-      <SkipLinks />
-      <FetchLoader />
-      <Toast />
-    </section>
+    </FocusManager>
   );
 };
 
