@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     
     permissions:
-      contents: read
+      contents: write
       id-token: write
     
     steps:
@@ -58,22 +58,22 @@ jobs:
 
       - name: Create GitHub Release
         if: startsWith(github.ref, 'refs/tags/')
-        uses: actions/create-release@v1
+        run: |
+          gh release create ${{ github.ref_name }} \
+            --title "Release ${{ github.ref_name }}" \
+            --notes "## Changes
+
+          - Updated fe-base-react-template package
+          - See [CHANGELOG.md](./CHANGELOG.md) for detailed changes
+
+          ## Installation
+
+          \`\`\`bash
+          npx fe-base-react-template my-project
+          \`\`\`
+
+          ## What's New in ${{ github.ref_name }}
+
+          Check the [CHANGELOG.md](./CHANGELOG.md) for complete details of all changes and improvements in this release."
         env:
           GITHUB_TOKEN: ${{ secrets.DEPENDABOT_TOKEN }}
-        with:
-          tag_name: ${{ github.ref_name }}
-          release_name: Release ${{ github.ref_name }}
-          body: |
-            ## Changes
-            
-            - Updated Fe-Base template package
-            - See [CHANGELOG.md](./CHANGELOG.md) for detailed changes
-            
-            ## Installation
-            
-            ```bash
-            npx fe-base-react-template my-project
-            ```
-          draft: false
-          prerelease: false
