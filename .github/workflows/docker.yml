@@ -10,7 +10,7 @@ on:
 
 env:
   REGISTRY: docker.io
-  IMAGE_NAME: gnimoh001/fe-base-react-template
+  IMAGE_NAME: thriledlokkie983/fe-base-react-template
 
 jobs:
   build-and-push:
@@ -65,7 +65,7 @@ jobs:
         if: steps.docker-push.outcome == 'failure'
         run: |
           echo "::warning::Docker push failed. This might be due to:"
-          echo "::warning::1. DockerHub repository 'gnimoh001/fe-base-react-template' doesn't exist"
+          echo "::warning::1. DockerHub repository 'thriledlokkie983/fe-base-react-template' doesn't exist"
           echo "::warning::2. GitHub secrets DOCKER_USERNAME and DOCKER_PASSWORD are not configured"
           echo "::warning::3. Insufficient permissions on the DockerHub repository"
           echo "::warning::Please create the repository on DockerHub and ensure GitHub secrets are set up correctly."

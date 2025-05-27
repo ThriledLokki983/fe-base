@@ -75,7 +75,7 @@ function createTemplateMetadata() {
     name: 'fe-base',
     description: 'A modern React application template with TypeScript, Vite, and comprehensive tooling',
     version: JSON.parse(readFileSync(ROOT_PACKAGE_JSON, 'utf8')).version,
-    generator: '@gnimoh001/fe-base',
+    generator: '@thriledlokkie983/fe-base',
     generated: new Date().toISOString(),
     features: [
       'React 19',

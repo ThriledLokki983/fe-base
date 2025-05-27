@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - Fixed GitHub release template to use correct package name `fe-base-react-template`
-- Updated Docker repository name from `gnimoh001/fe-base` to `gnimoh001/fe-base-react-template`
+- Updated Docker repository name from `thriledlokkie983/fe-base` to `thriledlokkie983/fe-base-react-template`
 - Improved Docker workflow error handling with detailed troubleshooting messages
 - Added comprehensive Docker setup documentation (DOCKER_SETUP.md)
 
@@ -45,7 +45,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Successfully published to npm registry as `fe-base-react-template`
 
 ### Changed
-- **BREAKING**: Renamed package from `@gnimoh001/fe-base` to `fe-base-react-template`
+- **BREAKING**: Renamed package from `@thriledlokkie983/fe-base` to `fe-base-react-template`
 - Updated all CLI tool references to use new package name
 - Updated documentation and examples with new package name
 - Resolved scoped package authentication issues
