@@ -7,7 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.0.4] - 2025-05-27
+## [1.0.4] - 2025-05-28
+
+### Fixed
+- Updated Docker workflow to use correct secret names (`DOCKER_USERNAME`/`DOCKER_PASSWORD`)
+- Fixed GitHub release creation in publish workflow to use proper token (`DEPENDABOT_TOKEN`)
+- Enhanced Dependabot auto-merge workflow configuration
+- Improved CI/CD pipeline reliability
+
+### Technical Details
+- Standardized GitHub Actions secret naming conventions
+- Enhanced workflow security and reliability
+- Improved automated release and Docker publishing processes
 
 ## [1.0.3] - 2025-05-28
 
