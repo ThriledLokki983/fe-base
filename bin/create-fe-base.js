@@ -38,14 +38,16 @@ function checkNodeVersion() {
   const nodeVersion = process.version;
   const major = parseInt(nodeVersion.slice(1).split('.')[0]);
   
-  // Vite 6+ requires Node.js ^18.0.0 || ^20.0.0 || >=22.0.0 (excludes 21.x)
-  const isSupported = (major >= 18 && major !== 19 && major !== 21) || major >= 22;
+  // React Router v7 and other modern packages require Node.js >=20.0.0
+  const isSupported = major >= 20;
   
   if (!isSupported) {
-    log.error(`Node.js ${nodeVersion} is not supported by Vite 6+`);
-    log.info('Please use Node.js 18.x, 20.x, or 22+ for best compatibility');
-    log.info('You can continue, but you may encounter dependency issues');
-    log.warning('Consider using a Node version manager like nvm to switch versions');
+    log.error(`Node.js ${nodeVersion} is not supported`);
+    log.info('This template requires Node.js 20+ for react-router-dom v7 and other modern packages');
+    log.info('Please upgrade to Node.js 20 or later for best compatibility');
+    log.warning('Consider using a Node version manager like nvm to upgrade:');
+    log.info('  nvm install 20');
+    log.info('  nvm use 20');
     return false;
   }
   

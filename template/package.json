@@ -6,7 +6,7 @@
   "description": "A base template for React applications using Vite and TypeScript + SWC. ",
   "author": "Gideon Nimoh",
   "engines": {
-    "node": "^18.0.0 || ^20.0.0 || >=22.0.0"
+    "node": ">=20.0.0"
   },
   "scripts": {
     "start": "vite --port=${VITE_PORT:-3000} --host",
