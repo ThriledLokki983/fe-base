@@ -1,7 +1,7 @@
 {
   "name": "fe-base",
   "private": true,
-  "version": "1.0.5",
+  "version": "1.0.6",
   "type": "module",
   "description": "A base template for React applications using Vite and TypeScript + SWC. ",
   "author": "Gideon Nimoh",

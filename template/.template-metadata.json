@@ -1,9 +1,9 @@
 {
   "name": "fe-base",
   "description": "A modern React application template with TypeScript, Vite, and comprehensive tooling",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "generator": "@gnimoh001/fe-base",
-  "generated": "2025-05-27T22:29:27.330Z",
+  "generated": "2025-05-27T22:33:29.010Z",
   "features": [
     "React 19",
     "TypeScript",
