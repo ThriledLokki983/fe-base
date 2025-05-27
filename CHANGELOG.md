@@ -7,7 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.0.5] - 2025-05-27
+## [1.0.5] - 2025-05-28
+
+### Fixed
+- Added main binary entry `fe-base-react-template` to package.json for proper npx execution
+- Fixed npm binary resolution issue when using `npx fe-base-react-template`
+
+### Technical Details
+- Package now properly responds to `npx fe-base-react-template <project-name>`
+- Binary name now matches package name for consistent user experience
 
 ## [1.0.4] - 2025-05-28
 
