@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.2] - 2025-05-27
+
 ## [1.0.1] - 2025-05-27
 
 ### Added
@@ -54,6 +56,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 🎯 **React Aria** - Accessible components
 - 🐳 **Docker** - Containerization support
 
-[Unreleased]: https://github.com/ThriledLokki983/fe-base/compare/v1.0.1...HEAD
+[Unreleased]: https://github.com/ThriledLokki983/fe-base/compare/v1.0.2...HEAD
+[1.0.2]: https://github.com/ThriledLokki983/fe-base/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/ThriledLokki983/fe-base/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/ThriledLokki983/fe-base/releases/tag/v1.0.0
