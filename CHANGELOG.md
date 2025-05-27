@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.3] - 2025-05-28
+
+### Changed
+- **BREAKING**: Upgraded minimum Node.js requirement from 18+ to 20+
+- Updated CI matrix to test Node.js [20, 22] only (removed Node.js 18)
+- Enhanced CLI tool with strict Node.js 20+ validation and upgrade instructions
+- Updated template engines requirement to `>=20.0.0`
+- Updated README.md prerequisites to reflect Node.js 20+ requirement
+
+### Fixed
+- Ensured full compatibility with react-router-dom v7.6.1 and other modern packages
+- Resolved potential compatibility issues with older Node.js versions
+
+### Technical Details
+- react-router-dom v7 requires Node.js 20+ for optimal performance
+- Modern package ecosystem increasingly requires Node.js 20+
+- CLI now provides helpful upgrade instructions for users with older Node.js versions
+
 ## [1.0.2] - 2025-05-27
 
 ## [1.0.1] - 2025-05-27
