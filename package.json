@@ -1,6 +1,6 @@
 {
   "name": "fe-base-react-template",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "private": false,
   "type": "module",
   "description": "A modern, production-ready React application template with TypeScript, Vite, and comprehensive tooling",
