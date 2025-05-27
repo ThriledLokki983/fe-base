@@ -31,7 +31,7 @@ exec('npx tsc -b --noEmit', (tscError, tscStdout, tscStderr) => {
   console.log('🚀 Running Vite build...');
   
   // Then run Vite build with explicit configuration to skip native modules
-  exec('npx vite build --config vite.config.ci.ts', (viteError, viteStdout, viteStderr) => {
+  exec('npx vite build --config vite.config.ts', (viteError, viteStdout, viteStderr) => {
     if (viteError) {
       console.error('❌ Vite build failed:', viteError);
       console.error(viteStderr);
