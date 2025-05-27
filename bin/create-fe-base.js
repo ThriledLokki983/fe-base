@@ -63,14 +63,14 @@ async function main() {
 ${colors.bright}Fe-Base - Modern React Application Template${colors.reset}
 
 ${colors.bright}Usage:${colors.reset}
-  npx @gnimoh001/fe-base <project-name>    Create a new project
+  npx fe-base-react-template <project-name>    Create a new project
   fe-base --version                       Show version
   fe-base --help                          Show this help
 
 ${colors.bright}Examples:${colors.reset}
-  npx @gnimoh001/fe-base my-app
-  npm create @gnimoh001/fe-base my-dashboard
-  yarn create @gnimoh001/fe-base my-website
+  npx fe-base-react-template my-app
+  npm create fe-base-react-template my-dashboard
+  yarn create fe-base-react-template my-website
 
 ${colors.bright}Features:${colors.reset}
   ⚡ Vite - Lightning fast build tool

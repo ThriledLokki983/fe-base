@@ -34,14 +34,14 @@ function showHelp() {
 ${colors.bright}${colors.magenta}Fe-Base${colors.reset} - Modern React Application Template
 
 ${colors.bright}Usage:${colors.reset}
-  ${colors.cyan}npx @gnimoh001/fe-base <project-name>${colors.reset}    Create a new project
+  ${colors.cyan}npx fe-base-react-template <project-name>${colors.reset}    Create a new project
   ${colors.cyan}fe-base --version${colors.reset}                       Show version
   ${colors.cyan}fe-base --help${colors.reset}                          Show this help
 
 ${colors.bright}Examples:${colors.reset}
-  ${colors.green}npx @gnimoh001/fe-base my-app${colors.reset}
-  ${colors.green}npm create @gnimoh001/fe-base my-dashboard${colors.reset}
-  ${colors.green}yarn create @gnimoh001/fe-base my-website${colors.reset}
+  ${colors.green}npx fe-base-react-template my-app${colors.reset}
+  ${colors.green}npm create fe-base-react-template my-dashboard${colors.reset}
+  ${colors.green}yarn create fe-base-react-template my-website${colors.reset}
 
 ${colors.bright}Features:${colors.reset}
   ⚡ Vite - Lightning fast build tool

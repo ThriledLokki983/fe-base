@@ -2,7 +2,7 @@
 
 A modern, production-ready React application template with TypeScript, Vite, and comprehensive tooling.
 
-[![npm version](https://badge.fury.io/js/%40gnimoh001%2Ffe-base.svg)](https://badge.fury.io/js/%40gnimoh001%2Ffe-base)
+[![npm version](https://badge.fury.io/js/fe-base-react-template.svg)](https://badge.fury.io/js/fe-base-react-template)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Node.js CI](https://github.com/ThriledLokki983/fe-base/actions/workflows/ci.yml/badge.svg)](https://github.com/ThriledLokki983/fe-base/actions/workflows/ci.yml)
 
@@ -12,16 +12,16 @@ Create a new React project with Fe-Base in seconds:
 
 ```bash
 # Using npx (recommended)
-npx @gnimoh001/fe-base my-project
+npx fe-base-react-template my-project
 
 # Using npm
-npm create @gnimoh001/fe-base my-project
+npm create fe-base-react-template my-project
 
 # Using yarn
-yarn create @gnimoh001/fe-base my-project
+yarn create fe-base-react-template my-project
 
 # Using pnpm
-pnpm create @gnimoh001/fe-base my-project
+pnpm create fe-base-react-template my-project
 ```
 
 Then start developing:
@@ -153,13 +153,13 @@ Fe-Base is designed to be easily customizable:
 
 ```bash
 # Show help
-npx @gnimoh001/fe-base --help
+npx fe-base-react-template --help
 
 # Show version
-npx @gnimoh001/fe-base --version
+npx fe-base-react-template --version
 
 # Create project with specific name
-npx @gnimoh001/fe-base my-awesome-app
+npx fe-base-react-template my-awesome-app
 ```
 
 ## Contributing
