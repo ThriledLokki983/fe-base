@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.7] - 2025-05-28
+
+### Fixed
+- Fixed GitHub release template to use correct package name `fe-base-react-template`
+- Updated Docker repository name from `gnimoh001/fe-base` to `gnimoh001/fe-base-react-template`
+- Improved Docker workflow error handling with detailed troubleshooting messages
+- Added comprehensive Docker setup documentation (DOCKER_SETUP.md)
+
+### Added
+- Docker setup guide with prerequisites and troubleshooting steps
+- Graceful error handling for Docker publishing failures
+
 ## [1.0.6] - 2025-05-28
 
 ### Fixed
@@ -119,7 +131,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 🎯 **React Aria** - Accessible components
 - 🐳 **Docker** - Containerization support
 
-[Unreleased]: https://github.com/ThriledLokki983/fe-base/compare/v1.0.6...HEAD
+[Unreleased]: https://github.com/ThriledLokki983/fe-base/compare/v1.0.7...HEAD
+[1.0.7]: https://github.com/ThriledLokki983/fe-base/compare/v1.0.6...v1.0.7
 [1.0.6]: https://github.com/ThriledLokki983/fe-base/compare/v1.0.5...v1.0.6
 [1.0.5]: https://github.com/ThriledLokki983/fe-base/compare/v1.0.4...v1.0.5
 [1.0.4]: https://github.com/ThriledLokki983/fe-base/compare/v1.0.2...v1.0.4
