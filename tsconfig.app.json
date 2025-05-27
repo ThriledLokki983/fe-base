@@ -24,7 +24,7 @@
     "noUncheckedSideEffectImports": true,
 
     /* Base URL */
-    "baseUrl": "src",
+    "baseUrl": "template/src",
 
     /* Path Resolutions */
     "paths": {
@@ -41,6 +41,6 @@
       "@utils/*": ["utils/*"]
     }
   },
-  "include": ["src"],
+  "include": ["template/src"],
   "exclude": ["node_modules", "dist", "build", "coverage", "public"],
 }
