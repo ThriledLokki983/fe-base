@@ -10,7 +10,7 @@ on:
 
 env:
   REGISTRY: docker.io
-  IMAGE_NAME: gnimoh001/fe-base
+  IMAGE_NAME: gnimoh001/fe-base-react-template
 
 jobs:
   build-and-push:
@@ -49,6 +49,8 @@ jobs:
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
+        continue-on-error: true
+        id: docker-push
         with:
           context: ./template
           file: ./template/Dockerfile
@@ -59,11 +61,22 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
+      - name: Check Docker push result
+        if: steps.docker-push.outcome == 'failure'
+        run: |
+          echo "::warning::Docker push failed. This might be due to:"
+          echo "::warning::1. DockerHub repository 'gnimoh001/fe-base-react-template' doesn't exist"
+          echo "::warning::2. GitHub secrets DOCKER_USERNAME and DOCKER_PASSWORD are not configured"
+          echo "::warning::3. Insufficient permissions on the DockerHub repository"
+          echo "::warning::Please create the repository on DockerHub and ensure GitHub secrets are set up correctly."
+
       - name: Update Docker Hub description
         uses: peter-evans/dockerhub-description@v4
+        if: steps.docker-push.outcome == 'success'
+        continue-on-error: true
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: ${{ env.IMAGE_NAME }}
-          short-description: 'Fe-Base - Modern React application template with TypeScript, Vite, and Docker support'
+          short-description: 'fe-base-react-template - Modern React application template with TypeScript, Vite, and Docker support'
           readme-filepath: ./template/README.md

@@ -73,7 +73,7 @@ jobs:
             ## Installation
             
             ```bash
-            npx @gnimoh001/fe-base my-project
+            npx fe-base-react-template my-project
             ```
           draft: false
           prerelease: false
