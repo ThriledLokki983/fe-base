@@ -32,6 +32,13 @@ npm install
 npm run dev
 ```
 
+## Prerequisites
+
+- **Node.js**: Version 18.x, 20.x, or 22+ (Node.js 21.x is not supported due to Vite compatibility)
+- **Package Manager**: npm, yarn, or pnpm
+
+> **Note**: If you're using Node.js 21.x, you may encounter dependency installation errors. Consider using a Node version manager like [nvm](https://github.com/nvm-sh/nvm) to switch to a supported version.
+
 ## Features
 
 - ⚡ **Vite** - Lightning fast build tool with hot reload

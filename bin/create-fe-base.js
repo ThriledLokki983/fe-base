@@ -33,6 +33,25 @@ const log = {
 
 const TEMPLATE_DIR = join(__dirname, '..', 'template');
 
+// Check Node.js version compatibility
+function checkNodeVersion() {
+  const nodeVersion = process.version;
+  const major = parseInt(nodeVersion.slice(1).split('.')[0]);
+  
+  // Vite 6+ requires Node.js ^18.0.0 || ^20.0.0 || >=22.0.0 (excludes 21.x)
+  const isSupported = (major >= 18 && major !== 19 && major !== 21) || major >= 22;
+  
+  if (!isSupported) {
+    log.error(`Node.js ${nodeVersion} is not supported by Vite 6+`);
+    log.info('Please use Node.js 18.x, 20.x, or 22+ for best compatibility');
+    log.info('You can continue, but you may encounter dependency issues');
+    log.warning('Consider using a Node version manager like nvm to switch versions');
+    return false;
+  }
+  
+  return true;
+}
+
 async function main() {
   const projectName = process.argv[2];
 
@@ -93,6 +112,12 @@ Built with ❤️  by Gideon Nimoh
   if (!existsSync(TEMPLATE_DIR)) {
     log.error('Template directory not found. Please reinstall the package.');
     process.exit(1);
+  }
+
+  // Check Node.js version
+  const nodeVersionOk = checkNodeVersion();
+  if (!nodeVersionOk) {
+    log.warning('Proceeding with potentially incompatible Node.js version...');
   }
 
   log.highlight(`
