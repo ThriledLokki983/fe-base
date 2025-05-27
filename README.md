@@ -1,164 +1,212 @@
-# React + TypeScript + Vite
+# Fe-Base
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, production-ready React application template with TypeScript, Vite, and comprehensive tooling.
 
-Currently, two official plugins are available:
+[![npm version](https://badge.fury.io/js/%40gnimoh001%2Ffe-base.svg)](https://badge.fury.io/js/%40gnimoh001%2Ffe-base)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Node.js CI](https://github.com/ThriledLokki983/fe-base/actions/workflows/ci.yml/badge.svg)](https://github.com/ThriledLokki983/fe-base/actions/workflows/ci.yml)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Quick Start
+
+Create a new React project with Fe-Base in seconds:
+
+```bash
+# Using npx (recommended)
+npx @gnimoh001/fe-base my-project
+
+# Using npm
+npm create @gnimoh001/fe-base my-project
+
+# Using yarn
+yarn create @gnimoh001/fe-base my-project
+
+# Using pnpm
+pnpm create @gnimoh001/fe-base my-project
+```
+
+Then start developing:
+
+```bash
+cd my-project
+npm install
+npm run dev
+```
+
+## Features
+
+- ⚡ **Vite** - Lightning fast build tool with hot reload
+- ⚛️ **React 19** - Latest React with modern features
+- 🔷 **TypeScript** - Full type safety and enhanced DX
+- 🎨 **SCSS** - Enhanced styling with CSS modules
+- 🧪 **Vitest** - Fast and modern testing framework
+- 📏 **ESLint + Prettier** - Code quality and formatting
+- 🔄 **React Query** - Powerful server state management
+- 🐻 **Zustand** - Lightweight client state management
+- 🎭 **Framer Motion** - Beautiful animations and transitions
+- 🎯 **React Aria** - Accessible component primitives
+- 🐳 **Docker** - Complete containerization support
+
+## What's Included
+
+### 🏗️ Modern Development Stack
+- **Vite** for ultra-fast development and building
+- **TypeScript** with strict configuration
+- **React 19** with latest features and hooks
+- **SCSS** with CSS modules for scoped styling
+
+### 🧪 Testing & Quality
+- **Vitest** for unit and integration testing
+- **ESLint** with React and TypeScript rules
+- **Prettier** for consistent code formatting
+- Pre-configured test utilities and setup
+
+### 🎨 UI & Components
+- Pre-built component library with common components
+- **React Aria** for accessibility-first components
+- **Framer Motion** for smooth animations
+- Responsive design patterns and utilities
+
+### 🔄 State Management
+- **React Query** for server state and caching
+- **Zustand** for client-side state management
+- Pre-configured stores and patterns
+
+### 🐳 Production Ready
+- **Docker** support with multi-stage builds
+- **GitHub Actions** CI/CD workflows
+- Production optimization and bundling
+- Environment configuration management
+
+## Project Structure
+
+```
+my-project/
+├── src/
+│   ├── components/         # Reusable UI components
+│   ├── pages/             # Application pages/routes
+│   ├── hooks/             # Custom React hooks
+│   ├── stores/            # State management
+│   ├── styles/            # Global styles and themes
+│   ├── utils/             # Utility functions
+│   └── config/            # App configuration
+├── public/                # Static assets
+├── scripts/               # Build and utility scripts
+├── Dockerfile             # Container configuration
+├── docker-compose.yml     # Development containers
+└── vite.config.ts         # Vite configuration
+```
+
+## Available Scripts
+
+In your generated project, you can run:
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run test` - Run tests
+- `npm run lint` - Lint code
+- `npm run type-check` - Run TypeScript checks
 
 ## Docker Support
 
-This project includes Docker and Docker Compose configurations for both development and production environments. See [DOCKER.md](./DOCKER.md) for detailed instructions.
+The template includes complete Docker support:
 
 ```bash
-# Quick start - development mode
-docker-compose up -d frontend-dev
+# Development with hot reload
+docker-compose up dev
 
-# Quick start - production mode
-docker-compose up -d frontend
+# Production build
+docker-compose up --build
+
+# Or build manually
+docker build -t my-app .
+docker run -p 3000:80 my-app
 ```
 
-## GitHub Actions
+## Customization
 
-This project includes several GitHub Actions workflows for continuous integration and deployment. See [GITHUB_ACTIONS.md](./GITHUB_ACTIONS.md) for detailed information.
+Fe-Base is designed to be easily customizable:
 
-## Troubleshooting
+### 🎨 Styling
+- Modify design tokens in `src/styles/design-tokens.scss`
+- Update theme configuration
+- Customize component styles
 
-For common issues and solutions, please refer to the [TROUBLESHOOTING.md](./TROUBLESHOOTING.md) document.
+### 🔧 Configuration
+- Update `vite.config.ts` for build settings
+- Modify `tsconfig.json` for TypeScript options
+- Customize ESLint rules in `eslint.config.js`
 
-## Makefile Support
+### 📦 Dependencies
+- Add new packages with `npm install`
+- Update existing packages with `npm update`
+- Remove unused dependencies
 
-A Makefile is provided for convenient shortcuts to common commands:
+## CLI Options
 
 ```bash
-# Start development environment
-make start-dev
+# Show help
+npx @gnimoh001/fe-base --help
 
-# Start staging environment
-make start-staging
+# Show version
+npx @gnimoh001/fe-base --version
 
-# Start production environment
-make start-prod
-
-# View all available commands
-make help
+# Create project with specific name
+npx @gnimoh001/fe-base my-awesome-app
 ```
 
-## Environment Configuration
+## Contributing
 
-The project supports multiple environments through .env files:
+We welcome contributions! Please see our [Contributing Guide](https://github.com/ThriledLokki983/fe-base/blob/main/CONTRIBUTING.md) for details.
 
-- `.env.development` - Development environment settings
-- `.env.staging` - Staging environment settings
-- `.env.production` - Production environment settings
-- `.env` - Local overrides (not committed to git)
+### Development Setup
 
-Environment variables are prefixed with `VITE_` to make them accessible in the client-side code:
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/ThriledLokki983/fe-base.git
+   cd fe-base
+   ```
 
-```
-# Example .env.development
-VITE_PORT=3000
-VITE_API_URL=http://localhost:8080/api
-VITE_NODE_ENV=development
-```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-To start the application with a specific environment:
+3. Test the CLI locally:
+   ```bash
+   npm run test:cli
+   ```
+
+4. Build the package:
+   ```bash
+   npm run build:package
+   ```
+
+5. Test template generation:
+   ```bash
+   npm run dev:template
+   ```
+
+## Publishing
+
+This package is automatically published to npm when a new tag is pushed:
 
 ```bash
-# Development environment
-make start-dev
-
-# Staging environment
-make start-staging
-
-# Production environment
-make start-prod
+# Create and push a new version
+npm version patch  # or minor, major
+git push origin main --tags
 ```
 
-You can also use npm scripts:
+## License
 
-```bash
-# Development environment
-npm run start:dev
+MIT © [Gideon Nimoh](https://github.com/ThriledLokki983)
 
-# Staging environment 
-npm run start:staging
+## Support
 
-# Production environment
-npm run start:prod
-```
+- 📖 [Documentation](https://github.com/ThriledLokki983/fe-base)
+- 🐛 [Issue Tracker](https://github.com/ThriledLokki983/fe-base/issues)
+- 💬 [Discussions](https://github.com/ThriledLokki983/fe-base/discussions)
 
-Environment variables can be accessed in your code through the config utility:
+---
 
-```typescript
-import env, { isDev, isProd } from '@/config/env';
-
-// Use environment variables
-console.log(`API URL: ${env.API_URL}`);
-
-// Conditional logic based on environment
-if (isDev) {
-  console.log('Running in development mode');
-}
-```
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-## Code Style Guidelines
-
-This project follows a consistent code style enforced by ESLint. Some key style rules include:
-
-- **Semicolons**: Required at the end of all statements, including imports
-- **Quotes**: Single quotes for strings
-- **Indentation**: 2 spaces
-
-To automatically fix any code style issues, run:
-
-```bash
-npm run lint:fix
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+**Built with ❤️ by the Fe-Base team**

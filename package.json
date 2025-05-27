@@ -1,81 +1,69 @@
 {
-  "name": "fe-base",
-  "private": true,
-  "version": "0.0.0",
+  "name": "@gnimoh001/fe-base",
+  "version": "1.0.0",
+  "private": false,
   "type": "module",
-  "description": "A base template for React applications using Vite and TypeScript + SWC. ",
-  "author": "Gideon Nimoh",
-  "scripts": {
-    "start": "vite --port=${VITE_PORT:-3000} --host",
-    "start:dev": "vite --mode development --port=${VITE_PORT:-3000} --host",
-    "start:staging": "vite --mode staging --port=${VITE_PORT:-3001} --host",
-    "start:prod": "vite --mode production --port=${VITE_PORT:-80} --host",
-    "watch": "tsc -b --watch",
-    "test": "vite test",
-    "test:unit": "vitest --run",
-    "build": "cross-env ROLLUP_SKIP_NODEJS_NATIVE=1 tsc -b && vite build",
-    "build:safe": "cross-env ROLLUP_SKIP_NODEJS_NATIVE=1 vite build --emptyOutDir",
-    "prebuild:ci": "node scripts/patch-rollup-native.js",
-    "build:ci": "node scripts/build-ci.js",
-    "build:github": "node scripts/github-actions-build.js",
-    "lint": "eslint .",
-    "lint:fix": "eslint --fix .",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "@grrr/utils": "^2.5.1",
-    "@tanstack/react-query": "^5.77.2",
-    "@tanstack/react-query-devtools": "^5.77.2",
-    "dompurify": "^3.2.6",
-    "framer-motion": "^12.14.0",
-    "lucide-react": "^0.511.0",
-    "normalize.css": "^8.0.1",
-    "react": "^19.1.0",
-    "react-aria-components": "^1.9.0",
-    "react-dom": "^19.1.0",
-    "react-router-dom": "^7.6.1",
-    "react-use-cookie": "^1.6.1",
-    "zustand": "^5.0.5"
-  },
-  "devDependencies": {
-    "@eslint/js": "^9.25.0",
-    "@tanstack/eslint-plugin-query": "^5.78.0",
-    "@types/node": "^22.15.21",
-    "@types/postcss-pxtorem": "^6.1.0",
-    "@types/react": "^19.1.6",
-    "@types/react-dom": "^19.1.2",
-    "@vitejs/plugin-react-swc": "^3.10.0",
-    "@vitest/coverage-v8": "^3.1.4",
-    "@vitest/ui": "^3.1.4",
-    "autoprefixer": "^10.4.21",
-    "cross-env": "^7.0.3",
-    "eslint": "^9.25.0",
-    "eslint-config-prettier": "^10.1.5",
-    "eslint-plugin-prettier": "^5.4.0",
-    "eslint-plugin-react-hooks": "^5.2.0",
-    "eslint-plugin-react-refresh": "^0.4.19",
-    "globals": "^16.2.0",
-    "jsdom": "^26.1.0",
-    "postcss-pxtorem": "^6.1.0",
-    "postcss-scss": "^4.0.9",
-    "prettier": "^3.5.3",
-    "sass": "^1.89.0",
-    "sass-embedded": "^1.89.0",
-    "typescript": "~5.8.3",
-    "typescript-eslint": "^8.30.1",
-    "vite": "^6.3.5",
-    "vite-plugin-svgr": "^4.3.0",
-    "vitest": "^3.1.4"
-  },
-  "main": "eslint.config.js",
+  "description": "A modern, production-ready React application template with TypeScript, Vite, and comprehensive tooling",
+  "author": "Gideon Nimoh <your.email@example.com>",
+  "license": "MIT",
+  "keywords": [
+    "react",
+    "typescript",
+    "vite",
+    "template",
+    "starter-kit",
+    "boilerplate",
+    "frontend",
+    "scaffolding",
+    "zustand",
+    "react-query",
+    "docker",
+    "cli",
+    "generator"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ThriledLokki983/fe-base.git"
   },
-  "keywords": [],
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/ThriledLokki983/fe-base/issues"
   },
-  "homepage": "https://github.com/ThriledLokki983/fe-base#readme"
+  "homepage": "https://github.com/ThriledLokki983/fe-base#readme",
+  "bin": {
+    "create-fe-base": "./bin/create-fe-base.js",
+    "fe-base": "./bin/fe-base.js"
+  },
+  "files": [
+    "bin/",
+    "template/",
+    "scripts/",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build:template": "node scripts/build-template.js",
+    "build:package": "npm run build:template",
+    "test:cli": "node bin/create-fe-base.js --help && echo '\\n---\\n' && node bin/fe-base.js --help",
+    "test:template": "cd template && npm run test:unit",
+    "lint:template": "cd template && npm run lint",
+    "version:patch": "node scripts/version.js patch",
+    "version:minor": "node scripts/version.js minor",
+    "version:major": "node scripts/version.js major",
+    "prepublishOnly": "npm run build:package",
+    "release": "npm run prepublishOnly && npm publish",
+    "release:beta": "npm run prepublishOnly && npm publish --tag beta",
+    "dev:template": "cd template && npm run start:dev"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "fs-extra": "^11.1.1"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^22.15.21"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  }
 }

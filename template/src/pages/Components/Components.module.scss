@@ -1,0 +1,114 @@
+@use '../../styles/utility' as *;
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-xl);
+}
+
+.title {
+  @include typography(h1);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-xl);
+}
+
+.sectionGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  gap: var(--space-xl);
+  margin-bottom: var(--space-2xl);
+}
+
+.section {
+  margin-bottom: var(--space-2xl);
+}
+
+.sectionTitle {
+  @include typography(h2);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-md);
+}
+
+.subSectionTitle {
+  @include typography(h3);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.subsectionTitle {
+  @include typography(h3);
+  color: var(--color-text-primary);
+  margin: var(--space-lg) 0 var(--space-md);
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.description {
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-lg);
+  line-height: 1.6;
+  max-width: 800px;
+}
+
+.buttonGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: var(--space-xl);
+  margin-bottom: var(--space-2xl);
+}
+
+.formSection {
+  background-color: var(--color-surface-1);
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+}
+
+.formElements {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.formGroup {
+  padding: var(--space-lg);
+  background: var(--color-surface);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-sm);
+
+  h3 {
+    @include typography(h3);
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-md);
+  }
+}
+
+.formControls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.smallText {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.loaderDemo {
+  position: relative;
+  min-height: 200px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}

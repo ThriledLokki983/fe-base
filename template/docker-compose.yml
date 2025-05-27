@@ -1,0 +1,41 @@
+services:
+  # Production build
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    image: fe-base:latest
+    container_name: fe-base
+    ports:
+      - "${VITE_PORT:-80}:80"
+    restart: unless-stopped
+    env_file:
+      - .env.production
+    networks:
+      - app-network
+
+  # Development mode with hot reloading
+  frontend-dev:
+    build:
+      context: .
+      target: build
+    image: fe-base:dev
+    container_name: fe-base-dev
+    command: npm run start
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    ports:
+      - "${VITE_PORT:-3000}:${VITE_PORT:-3000}"
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=development
+    env_file:
+      - .env.development
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

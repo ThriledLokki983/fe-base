@@ -2,54 +2,87 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, develop ]
   pull_request:
-    branches: [ main ]
+    branches: [ main, develop ]
   workflow_dispatch:
 
 jobs:
-  build-and-test:
+  validate:
     runs-on: ubuntu-latest
     
     strategy:
       matrix:
-        node-version: [18.x, 20.x]
-      fail-fast: false  # Prevent the entire job from failing if one matrix job fails
-
+        node-version: [18, 20, 21]
+    
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Node.js ${{ matrix.node-version }}
+      - name: Setup Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-      
-      - name: Clear npm cache and directories
-        run: |
-          rm -rf node_modules package-lock.json
-          
+
       - name: Install dependencies
-        run: npm install --no-optional
-        
-      - name: Install testing dependencies
-        run: npm install vitest @vitest/ui @vitest/coverage-v8 jsdom --no-save
-      
-      - name: Run linter
-        run: npm run lint
-        continue-on-error: true  # Don't fail the build if linting fails
-      
-      - name: Run tests
-        run: npm run test:unit
-        continue-on-error: true  # Don't fail the build if tests fail during initial setup
-      
-      - name: Build project
-        run: npm run build:ci
-      
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
+        run: npm ci
+
+      - name: Validate package structure
+        run: |
+          echo "Validating package.json..."
+          node -e "
+            const pkg = require('./package.json');
+            if (!pkg.bin) throw new Error('No bin entries found');
+            if (!pkg.files) throw new Error('No files array found');
+            console.log('✅ Package structure is valid');
+          "
+
+      - name: Build package
+        run: npm run build:package
+
+      - name: Test CLI tools
+        run: npm run test:cli
+
+      - name: Test template creation
+        run: |
+          # Test creating a new project
+          mkdir -p test-output
+          cd test-output
+          node ../bin/create-fe-base.js test-project
+          cd test-project
+          ls -la
+          # Verify key files exist
+          test -f package.json || exit 1
+          test -f src/App.tsx || exit 1
+          test -f vite.config.ts || exit 1
+          echo "✅ Template creation test passed"
+
+  lint-template:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          name: dist-files-${{ matrix.node-version }}
-          path: dist/
-          retention-days: 7
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: 'template/package-lock.json'
+
+      - name: Install template dependencies
+        run: |
+          cd template
+          npm ci
+
+      - name: Lint template code
+        run: |
+          cd template
+          npm run lint
+
+      - name: Test template
+        run: |
+          cd template
+          npm run test:unit
