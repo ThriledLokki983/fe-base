@@ -7,7 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.0.6] - 2025-05-27
+## [1.0.6] - 2025-05-28
+
+### Fixed
+- Version bump to resolve npm publishing conflict
+- All features and fixes from v1.0.5 included
+
+### Technical Details
+- Automated publishing workflow now properly handles version conflicts
+- Package ready for distribution with fixed binary configuration
 
 ## [1.0.5] - 2025-05-28
 
