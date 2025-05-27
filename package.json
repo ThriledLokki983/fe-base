@@ -1,6 +1,6 @@
 {
   "name": "fe-base-react-template",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "private": false,
   "type": "module",
   "description": "A modern, production-ready React application template with TypeScript, Vite, and comprehensive tooling",
@@ -30,6 +30,7 @@
   },
   "homepage": "https://github.com/ThriledLokki983/fe-base#readme",
   "bin": {
+    "fe-base-react-template": "./bin/create-fe-base.js",
     "create-fe-base": "./bin/create-fe-base.js",
     "fe-base": "./bin/fe-base.js"
   },

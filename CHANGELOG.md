@@ -7,7 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.5] - 2025-05-27
+
 ## [1.0.4] - 2025-05-28
+
+### Added
+- Successfully published to npm registry as `fe-base-react-template`
+
+### Changed
+- **BREAKING**: Renamed package from `@gnimoh001/fe-base` to `fe-base-react-template`
+- Updated all CLI tool references to use new package name
+- Updated documentation and examples with new package name
+- Resolved scoped package authentication issues
 
 ### Fixed
 - Updated Docker workflow to use correct secret names (`DOCKER_USERNAME`/`DOCKER_PASSWORD`)
@@ -16,9 +27,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Improved CI/CD pipeline reliability
 
 ### Technical Details
+- Package now available as unscoped npm package for easier installation
+- All CLI commands updated to reflect new package name:
+  - `npx fe-base-react-template my-project`
+  - `npm create fe-base-react-template my-project`
 - Standardized GitHub Actions secret naming conventions
 - Enhanced workflow security and reliability
-- Improved automated release and Docker publishing processes
 
 ## [1.0.3] - 2025-05-28
 
@@ -87,7 +101,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 🎯 **React Aria** - Accessible components
 - 🐳 **Docker** - Containerization support
 
-[Unreleased]: https://github.com/ThriledLokki983/fe-base/compare/v1.0.4...HEAD
+[Unreleased]: https://github.com/ThriledLokki983/fe-base/compare/v1.0.5...HEAD
+[1.0.5]: https://github.com/ThriledLokki983/fe-base/compare/v1.0.4...v1.0.5
 [1.0.4]: https://github.com/ThriledLokki983/fe-base/compare/v1.0.2...v1.0.4
 [1.0.2]: https://github.com/ThriledLokki983/fe-base/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/ThriledLokki983/fe-base/compare/v1.0.0...v1.0.1
