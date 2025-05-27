@@ -1,6 +1,6 @@
 {
   "name": "@gnimoh001/fe-base",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": false,
   "type": "module",
   "description": "A modern, production-ready React application template with TypeScript, Vite, and comprehensive tooling",
