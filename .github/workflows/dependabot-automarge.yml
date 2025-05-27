@@ -1,5 +1,5 @@
 name: Dependabot auto-merge
-# Force cache refresh - Updated May 27, 2025
+# Force cache refresh - Updated May 27, 2025 - v2.0
 on: pull_request
 
 permissions:

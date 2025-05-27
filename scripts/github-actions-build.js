@@ -26,9 +26,29 @@ const tempConfigContent = `
 // Temporary Vite config for GitHub Actions
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
+import * as path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export default defineConfig({
   plugins: [react()],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+      '@components': path.resolve(__dirname, './src/components'),
+      '@utils': path.resolve(__dirname, './src/utils'),
+      '@pages': path.resolve(__dirname, './src/pages'),
+      '@hooks': path.resolve(__dirname, './src/hooks'),
+      '@config': path.resolve(__dirname, './src/config'),
+      '@contexts': path.resolve(__dirname, './src/contexts'),
+      '@hocs': path.resolve(__dirname, './src/hocs'),
+      '@stores': path.resolve(__dirname, './src/stores'),
+      '@styles': path.resolve(__dirname, './src/styles'),
+      '@assets': path.resolve(__dirname, './src/assets'),
+    },
+  },
   build: {
     emptyOutDir: true,
     sourcemap: false,
