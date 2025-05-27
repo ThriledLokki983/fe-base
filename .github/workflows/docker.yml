@@ -31,8 +31,8 @@ jobs:
         uses: docker/login-action@v3
         with:
           registry: ${{ env.REGISTRY }}
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Extract metadata
         id: meta
@@ -62,8 +62,8 @@ jobs:
       - name: Update Docker Hub description
         uses: peter-evans/dockerhub-description@v4
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
           repository: ${{ env.IMAGE_NAME }}
           short-description: 'Fe-Base - Modern React application template with TypeScript, Vite, and Docker support'
           readme-filepath: ./template/README.md
